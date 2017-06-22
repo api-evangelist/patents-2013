@@ -1,0 +1,115 @@
+---
+
+title: Methods, systems, and computer readable medium for active monitoring, memory protection and integrity verification of target devices
+abstract: Methods, systems, and computer readable media for active monitoring, memory protection, and integrity verification of a target device are disclosed. For example, a normal world virtual processor and a secure world virtual processor are instantiated on a target device. A target operating system is executed on the normal world virtual processor. An integrity verification agent is executed on the secure world virtual processor. One or more predetermined operations attempted on the normal world virtual processor are trapped to the secure world virtual processor. The integrity verification agent is used to determine the effect of the execution of the trapped operations on the target device.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09483635&OS=09483635&RS=09483635
+owner: NORTH CAROLINA STATE UNIVERSITY
+number: 09483635
+owner_city: Raleigh
+owner_country: US
+publication_date: 20130315
+---
+This application claims the benefit of U.S. Provisional Patent Application Ser. No. 61 679 305 filed Aug. 3 2012 the disclosure of which is incorporated herein by reference in its entirety.
+
+This invention was made with government support under Grant Nos. 0910767 awarded by the National Science Foundation and W911 NF 08 1 0105 and 528787 awarded by the Army Research Office. The government has certain rights in this invention.
+
+The subject matter described herein relates to computer system security. More particularly the subject matter described herein relates to methods systems and computer readable medium for active monitoring memory protection and integrity verification of target devices.
+
+The damage and loss caused by attacks and security breaches have drawn attentions to develop secure and reliable systems for computing platforms including mobile and embedded systems.
+
+Computer attacks and security breaches can seriously impact target devices by performing unauthorized modification to the operating system OS kernel or critical programs like user processes or system management daemons which run inside the target system. In particular modifying the OS kernel could allow malicious attackers to have an unlimited access to the whole system.
+
+These challenges present a need for developing unconventional solutions that are well isolated from the running OS yet capable of actively monitoring the target system including the kernel and provide the needed memory protection to guarantee its integrity.
+
+Methods systems and computer readable media for active monitoring memory protection and integrity verification of software programs that run on a target device are disclosed. According to one method a normal world virtual processor and a secure world virtual processor are instantiated on a target device. A target operating system is executed on the normal world virtual processor. An integrity verification agent is executed on the secure world virtual processor. Predetermined operations attempted on the normal world virtual processor are trapped to the secure world virtual processor. The integrity verification agent is used to determine the effect of the execution of the trapped operations on the target device.
+
+According to one system the system includes a normal world virtual processor and a secure world virtual processor configured to execute on a target device. The system also includes an integrity verification agent configured to execute on the secure world virtual processor. The system further includes a target operating system that executes on the normal world virtual processor. The normal world virtual processor is configured to trap to the one or more predetermined operations attempted on the normal world virtual processor. The secure world virtual processor is configured to use the integrity verification agent to determine the effect of execution of the trapped operations on the target device.
+
+The subject matter described herein for active monitoring memory protection and integrity verification of target devices may be implemented in hardware software firmware or any combination thereof. As such the terms function or module as used herein refer to hardware software and or firmware for implementing the feature being described. In one exemplary implementation the subject matter described herein may be implemented using a computer readable medium having stored thereon computer executable instructions that when executed by the processor of a computer control the computer to perform steps. Exemplary computer readable media suitable for implementing the subject matter described herein include non transitory computer readable media such as disk memory devices chip memory devices programmable logic devices and application specific integrated circuits. In addition a computer readable medium that implements the subject matter described herein may be located on a single device or computing platform or may be distributed across multiple devices or computing platforms.
+
+We have novel techniques and mechanisms that can address these challenges. Aspects of the subject matter described herein may provide a hardware based isolation between a normal world virtual processor and a secure world normal processor. Certain processor architectures such as the ARM architecture provided by ARM Holdings plc provide such isolation. In ARM this feature is known as the ARM TrustZone technology. ARM s TrustZone technology enables hardware based isolation to separate the code execution on a single physical processor core into two worlds the secure world and the normal world or the non secure world . The secure world is intended for security sensitive operations while the normal world is intended for other operations.
+
+In some embodiments we place the target operating system to be protected in the normal world and our trusted components into the secure world. This arrangement may be implemented on a variety of architectures. Although some aspects of the subject matter described herein use the ARM TrustZone architecture it will be understood that methods and techniques described herein can be implemented on other processor architectures now known or later developed.
+
+The target operating system in principle can be any operating system such as Android embedded Linux NetBSD or any other OS now known or later developed. In some embodiments the target operating system may include a kernel that is responsible for managing the device resources. In some embodiments the code of the OS kernel may execute in a privileged mode and may be allowed to execute privileged instructions and security critical operations.
+
+In some embodiments the target device may have multiple user processes and or daemons that execute in an unprivileged user mode and may not be allowed to execute privileged instructions and security critical operations.
+
+In some embodiments one or more predetermined operations such as security critical operations and privileged instructions attempted on the normal world virtual processor are trapped to the secure world virtual processor. For example trapping a security critical operation or a privileged instruction may include switching the execution context from the normal world virtual processor to the secure world virtual processor. In this example the security critical operation or privileged instruction may be executed by the integrity verification agent running in the secure world rather than the target operating system running in the normal world.
+
+In some embodiments an integrity verification agent may be used to determine the effect of the execution of the trapped operations on the target device.
+
+In some embodiments the target OS running on the normal world virtual processor may be modified so that it is not capable of executing predetermined security critical operations or privileged instructions without trapping the predetermined operations or instructions to the integrity verification agent running on the secure world virtual processor. For example the target operating system kernel may be modified so that all the privileged instructions are removed from its executable binary. For example security privileged instructions include but are not limited to instructions that control the Memory Management Unit MMU of the target device.
+
+In some embodiments the modified executable binary may be marked as read only to avoid potentially malicious modification e.g. an unauthorized instruction to add privileged instructions back into the binary.
+
+In some embodiments a method in accordance with aspects of the subject matter described herein may include that the target operating system s unprivileged programs e.g. user processes are memory mapped as privileged execute never so they are not allowed to execute privileged instructions even if they are maliciously modified.
+
+In some embodiments modifying the normal world OS may be done by using any of the known techniques of directly modifying its source code modifying its executable binary or using binary translation.
+
+In some embodiments a method in accordance with aspects of the subject matter described herein may further include using memory access protection to prevent the target operating system from gaining the required memory access to execute security critical operations. For example security critical operations may include but are not limited to modifying the page tables that define the memory mapping of the system or modifying the Direct Memory Access DMA controller. The DMA controller may determine which memory is accessible by peripheral devices. Attacks may try to exploit the DMA controller so as to use peripheral devices to modify the code or data of the normal world virtual processor.
+
+In some embodiments a method in accordance with aspects of the subject matter described herein may include detecting an integrity violation of the target device when the integrity verification agent detects an attempt to execute a privileged instruction or a security critical operation that violates a predetermined policy. For example the policy may include but is not limited to not allowing modifications to the executable binaries of the normal world OS disabling the memory access protection of the normal world OS or modifying a read only critical data structures of the normal world OS.
+
+Our main goal is to prevent security attacks that attempt to modify the target device or portion therein such as a normal world operating system.
+
+In some embodiments aspects of the subject matter described herein may comprise techniques and or methods for detection of malicious attacks by generating an up to date report about the integrity status of the normal world operating systems.
+
+In some embodiments aspects of the subject matter described herein may comprise techniques and or methods may comprise preventing instructions and or operations that may result in compromising the integrity of the normal world operating system before they are executed.
+
+In some embodiments aspects of the subject matter described herein may comprise techniques and or methods for detection or prevention of malicious attacks or a combination of both.
+
+To achieve these objectives aspects of the subject matter described herein may provide methods modules and or devices that include one or more of the following capabilities 
+
+In some embodiments the integrity verification measurement agent may execute as a part of the secure world while the target operating system runs or executes in the normal world.
+
+In some embodiments the secure world may do load time verification of the normal world kernel through calculating the checksum of the loaded binary this process is widely known as static measurement .
+
+In some embodiments the load time verification may also extend to verify that the normal world kernel is properly modified for our intended protection by removing all privileged instructions from its binaries.
+
+The idea of using an isolated or protected component to verify a general purpose system is described in Grafinkel et al. Terra A Virtual Machine Based Platform for Trusted Computing SOSP 2003 the disclosure of which is incorporated herein by reference in its entirety. Intuitively static measurement only guarantees the integrity of the normal world kernel during the boot up process but it cannot guarantee the integrity of the kernel after the system boots and starts to interact with potential attackers.
+
+In some embodiments the OS kernel is the only software executing privileged instructions on the normal world virtual processor. Furthermore the kernel may not rely on mixed writable and executable pages. Through our experimental evaluation we found that many of the recent versions of OS kernels e.g. Android and Linux follow this assumption by separating executable code from writable data.
+
+In some embodiments a method in accordance with aspects of the subject matter described herein considers all attacks that aim to stealthily execute code inside the normal world operating system. In this context stealthily means that the code would be executed without updating the integrity verification agent that runs in the secure world. Such attacks can be done either by loading new unverified code binaries or by modifying code binaries that were previously mapped and already exist in memory. We design our system to handle both cases.
+
+In some embodiments a method in accordance with aspects of the subject matter described herein may further consider all attacks that aim to modify security critical data inside the normal world operating system. In this context the security critical data should be predefined for the integrity verification agent to monitor its modification.
+
+Attackers can use any existing system vulnerability to hack into the normal world operating system including kernel vulnerabilities that will allow them to control the normal world kernel. We guarantee that our system should detect and or prevent any of these vulnerabilities given that they involve loading new code or modifying existing code.
+
+Nevertheless there is a special type of attacks that does not require modifying or loading code which is the return oriented attack. Although our system cannot detect return oriented attacks because they solely rely on data vulnerabilities we guarantee that these attacks will not subvert our active monitoring and memory protection framework by loading new programs e.g. malicious apps without being measured by the integrity measurement agent in the secure world.
+
+In some embodiments one exemplary design of our system is based on ARM TrustZone. Despite the fact that this gives stronger hardware based protection it limits its capabilities of closely controlling the measurement target the normal world operating system . In the following we discuss the main challenges and limitations that face implementing an active monitoring and memory protection in embodiments that use ARM TrustZone based integrity monitoring.
+
+Aspects of the subject matter described herein allow active monitoring of the normal world by trapping critical events into the secure world. Moreover we use this active monitoring technique to possess control over the virtual memory mapping of the normal world so that it can provide full protection of the normal world memory using virtual memory access permission flags.
+
+Before we present our technique we give a quick background on three architectural principles of ARM v7 processors that are relevant to embodiments that implement aspects of the subject matter described herein on the ARMv7 architecture. As mentioned previously it will be understood that the methods and techniques herein can be implemented on any processor architectures other than the ARM v7 used in this exemplary design now known or later developed.
+
+The normal world is initialized so that it only allows certain memory ranges defined by virtual memory access control to execute privileged code.
+
+In some embodiment this may be done by loading a trusted preconfigured initial image of the normal world.
+
+In some embodiments these privileged memory pages are marked non writable and are carefully inspected so that they do not contain any single instruction that does certain privileged operations for example instructions that modify critical registers in the CP15 of ARM v7 architecture it will not be possible for the normal world to run these instructions. Consequently the normal world kernel will not be able to modify the processor functionalities that are controlled by these instructions for example functionalities that are controlled by specific critical CP15 registers of the ARM v7 architecture .
+
+In some embodiments these critical instructions collectively may be the only method for controlling the virtual memory access control of the normal world virtual process.
+
+An exemplary implementation of the active monitoring and memory protection framework will be implemented using one or more of the following steps 
+
+These steps may allow the proposed system to achieve both active monitoring of the normal world kernel and normal kernel memory protection. Steps 1 and 2 prevent any potentially malicious software running inside the normal world from executing privileged instruction either by mapping the instructions in the memory or by modifying any of the privileged already mapped instructions. The fact that ARM native code only consists of 32 bit or 16 bit instructions makes it feasible to scan the executable privileged pages word by word and affirm that none of the instructions would access a critical register.
+
+In some embodiments that use the ARM v7 architecture shows a sample encoding of the MCR instructions that is used to write to a CP register. The CP registers are defined by the CP number and four other parameters CRn CRm opc1 and opc2. If all 32 bit aligned values of the privileged executable pages are inspected so that no instruction would match an MCR to this specific register we can guarantee that this register will never be modified by the normal world. The critical registers that we target are particularly those that disable the MMU relocate the interrupt vector handler or relocate the base address of the virtual addressing translation tables.
+
+Step 3 guarantees memory protections. In some embodiments that use the ARM v7 architecture the TTBRs which point to the base of page tables are part of CP15. TTBRs will be marked among those registers that are prohibited to be modified by the normal world kernel as mentioned in step 2 . Thus the normal world will be restricted to use a specific physical memory as the page tables. The initialization code will map this physical memory the page tables non writable. Hence any page table updates will cause a data abort. Since all data abort exceptions will be trapped to the secure world as discussed in step 4 all page table modifications will be inspected by the secure world before actually taking effect in the normal world.
+
+Step 4 guarantees the required active monitoring. In some embodiments that use the ARM v7 architecture critical events such as modifying a TTBR value to context switch between user processes are going to be impossible to execute in the normal world. Thus the only way to execute this functionality correctly is for the normal world kernel to call the SMC instruction and let the critical operation be handled by the secure world. The security of this operation is supported by the fact that both CP register writes and SMC calls are atomic operations that consist of a single instruction. At the same time all integrity checks e.g. verifying that the new page tables does not have writable privileged pages are done by the secure world which is out of reach of the normal world. Even a kernel subverted by a return oriented attack will not be able to modify critical status by jumping through the middle of composite code and skip potential normal world integrity verification.
+
+Finally implementing step 5 means that the secure world will be the single point of integrity verification that guarantees that the active monitoring capabilities will remain in effect for the lifetime of the system. By implementing proper integrity checks on privileged operations such as verifying page tables of newly mapped processors and verifying that the MMU or virtual page access control protections are not disabled the secure world will guarantee that both memory protection and active monitoring are in place for the normal world.
+
+As set forth above a target operating system is executed on normal world virtual processor and an integrity verification agent is executed on secure world virtual processor . The execution of certain critical operations is trapped to secure world virtual processor . Examples of trapped operations include regular data abort exceptions or supervisory mode calls used for system calls. The trapped operations are executed on secure world virtual processor . Integrity verification agent monitors execution of the trapped operations on secure world virtual processor to evaluate effects of the execution of the trapped operations on integrity of target device .
+
+For example target device may be a smart phone and the user may switch between a voice call and an email application. In such a situation target OS may write a new value to the processor control register CP15 to switch between processes. As stated above attempted writes to CP15 are trapped and passed to integrity verification agent for verification. Integrity verification agent may examine the value being written to CP15. In this instance the value may be the process ID or memory location for the email application. To validate the process ID integrity verification agent may search a list of allowed processes to see whether the email application is permitted to execute. In this instance it is assumed that the email application is permitted to execute and secure world virtual processor may allow the email application to execute.
+
+In another example the memory location or process ID attempted to be written to CP15 may corresponding to malware which would not be in the list of permitted applications. In such a situation secure world virtual processor may prevent the malware from executing. It should also be noted that integrity verification agent may consult with an external system to verify an application or process for example using a cryptographic signature of the application.
+
+It will be understood that various details of the presently disclosed subject matter may be changed without departing from the scope of the presently disclosed subject matter. Furthermore the foregoing description is for the purpose of illustration only and not for the purpose of limitation.
+

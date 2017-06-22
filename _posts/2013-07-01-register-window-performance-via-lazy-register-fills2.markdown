@@ -1,0 +1,83 @@
+---
+
+title: Register window performance via lazy register fills
+abstract: The present embodiments provide a system that facilitates lazy register window fills in a processor. During program execution, when the system encounters a restore instruction for a register window, the system determines if the restore instruction causes an underflow condition that requires the register window to be filled from a stack in memory. If so, the system completes the restore instruction by updating state information for the register window to indicate that the restore instruction is complete without actually filling the individual registers that comprise the register window from the stack. During subsequent program execution, the system lazily fills registers in the register window from the stack as the registers are accessed by the program.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09535697&OS=09535697&RS=09535697
+owner: ORACLE INTERNATIONAL CORPORATION
+number: 09535697
+owner_city: Redwood Shores
+owner_country: US
+publication_date: 20130701
+---
+The disclosed embodiments generally relate to techniques for improving performance in computer systems. More specifically the disclosed embodiments relate to a technique for improving the performance of register window operations in computer systems by performing lazy register fills.
+
+The use of register windows can greatly improve processor performance by eliminating the need to save and restore registers when a program makes function calls. It does so by providing multiple sets of registers one set called a window for each function call with adjacent sets being overlapped to enable parameter passing between functions. However when a processor runs out of windows to allocate to a new function call it has to spill the contents of one of the register windows to a stack in memory in order to make the register window available for the new function call. This condition is called a register window overflow. Similarly when this spilled window of registers subsequently needs to be accessed by the program the registers have to be restored from the stack. This condition is called a register window underflow. 
+
+In existing processors register window overflows and underflows are typically handled via software traps referred to as spill traps and fill traps respectively . These traps are expensive operations because they typically generate a processor pipeline flush before entering the trap handler and another flush after exiting the trap handler. Also during a spill trap all of the registers in the window e.g. 16 registers in a SPARC architecture are saved to the stack in memory even though most of them are not live across the function call. Conversely on a fill trap all of the registers are restored from the stack even though most of them are not subsequently used. In fact empirical results show that for a wide range of applications typically only four of the 16 registers are used. Moreover register window underflows typically affect processor performance more than register window overflows. This is because the spill trap handler uses load instructions while the fill trap handler uses store instructions and it is much more difficult for the processor to hide the latency of load instructions than to hide the latency of store instructions.
+
+Because of the high cost of handling register window overflows and underflows the use of register windows can degrade processor performance if an application generates too many overflows and underflows.
+
+The present embodiments provide a system that facilitates lazy register window fills in a processor. During program execution when the system encounters a restore instruction for a register window the system determines if the restore instruction causes an underflow condition that requires the register window to be filled from a stack in memory. If so the system completes the restore instruction by updating state information for the register window to indicate that the restore instruction is complete without actually filling the individual registers that comprise the register window from the stack. During subsequent program execution the system lazily fills registers in the register window from the stack as the registers are accessed by the program. Note that the phrases lazy fill operation and lazily filling registers refer to a technique where registers are loaded from a register window located on the system stack. These register loading operations are referred to as lazy because they only take place when the data paths between the registers are memory are not busy. 
+
+In some embodiments completing the restore instruction includes updating the state information for the register window without executing a fill trap handler and without incurring associated pipeline flushes.
+
+In some embodiments while lazily filling the registers from the stack the system keeps track of which registers in the register window are valid by keeping track of which registers have been filled from the stack or have been updated during program execution. Next upon encountering an instruction that reads a register in the register window the system determines whether the register is valid. If not the system fills the register from the stack before the instruction loads from the register.
+
+In some embodiments filling the register from the stack includes inserting a fill instruction for the register into an execution pipeline ahead of the instruction that loads from the register.
+
+In some embodiments completing the restore instruction further comprises generating one or more prefetch instructions to prefetch cache lines containing stack entries for the register window thereby reducing the chance of a cache miss during subsequent lazy fill operations for the register window.
+
+In some embodiments keeping track of which registers in the register window are valid comprises maintaining a register use tracking array RUTA which includes state information indicating validity for each register in the register file.
+
+In some embodiments maintaining the RUTA includes maintaining a speculative copy of the RUTA at a decode stage of the execution pipeline and maintaining a non speculative copy of the RUTA at a commit stage of the execution pipeline. During a pipeline flush values in the non speculative copy of the RUTA are used to update the speculative copy of the RUTA.
+
+In some embodiments upon encountering an instruction that writes a destination register in the register window the system updates an entry in the RUTA for the destination register to indicate that the destination register is valid.
+
+In some embodiments upon executing a save instruction that flushes a register window to the stack to make room for a new register window the system updates entries in the RUTA for the new register window to indicate that all of the registers in the new register window are valid.
+
+In some embodiments whenever an underflow condition is detected the system determines how many registers in the register window were actually used. The system keeps track of this determined register usage for each function call. If the determined register usage for a given function call exceeds a threshold during subsequent underflow conditions for the function call the system forgoes lazy register fills and instead fills the entire register window from the stack by inserting load instructions into the execution pipeline.
+
+The following description is presented to enable any person skilled in the art to make and use the present embodiments and is provided in the context of a particular application and its requirements. Various modifications to the disclosed embodiments will be readily apparent to those skilled in the art and the general principles defined herein may be applied to other embodiments and applications without departing from the spirit and scope of the present embodiments. Thus the present embodiments are not limited to the embodiments shown but are to be accorded the widest scope consistent with the principles and features disclosed herein.
+
+The data structures and code described in this detailed description are typically stored on a computer readable storage medium which may be any device or medium that can store code and or data for use by a computer system. The computer readable storage medium includes but is not limited to volatile memory non volatile memory magnetic and optical storage devices such as disk drives magnetic tape CDs compact discs DVDs digital versatile discs or digital video discs or other media capable of storing computer readable media now known or later developed.
+
+The methods and processes described in the detailed description section can be embodied as code and or data which can be stored in a computer readable storage medium as described above. When a computer system reads and executes the code and or data stored on the computer readable storage medium the computer system performs the methods and processes embodied as data structures and code and stored within the computer readable storage medium. Furthermore the methods and processes described below can be included in hardware modules. For example the hardware modules can include but are not limited to application specific integrated circuit ASIC chips field programmable gate arrays FPGAs and other programmable logic devices now known or later developed. When the hardware modules are activated the hardware modules perform the methods and processes included within the hardware modules.
+
+The disclosed embodiments can drastically reduce the performance penalty of register window underflows by eliminating the need to flush the processor pipeline and by only restoring the registers that are actually used from the stack.
+
+A conventional technique for handling a register window underflow is to use a trap handler as is illustrated in . When the system decodes a register window restore instruction if the system variable CANRESTORE 0 a register window underflow condition exists. This causes the system to execute a trap handler which loads all of the registers R R . . . Rfrom the stack into the register file. Trap handler also increments CANRESTORE to indicate that another register window has been retrieved from the stack. Next trap handler causes a retry of the register window restore instruction. During the retry CANRESTORE 1 which indicates that the underflow condition no longer exists and the register window restore instruction can proceed normally. Note that using trap handler is time consuming because a pipeline flush is triggered at the start of trap handler and also at the end of trap handler .
+
+In contrast the disclosed embodiments do not use a trap handler to process register window underflows as is illustrated in . When the system decodes a register window restore instruction and CANRESTORE 0 a register underflow condition exits. In this case a fill trap is not generated and registers are not restored from the stack in memory until they are actually used. Instead a single helper instruction which increments CANRESTORE is inserted into the pipeline ahead of the register window restore instruction. There is no need to flush the pipeline nor is there a need to execute a fill trap handler.
+
+Register usage is tracked by using a structure called a register use tracking array RUTA . Subsequent instructions access the RUTA to determine if they are reading a register that has not yet been restored. If so a helper load instruction is injected into the pipeline ahead of that instruction to restore the register from memory.
+
+This process is described in more detail below but first we describe a computer system that implements the above described lazy fill technique.
+
+Processor includes an execution pipeline comprising a fetch unit a decode unit a rename unit an issue pick unit an execute unit and a commit retire unit . During program execution fetch unit retrieves an instruction from level one L1 instruction cache I cache . This instruction feeds through decode unit which decodes the instruction and then through rename unit which performs register renaming operations to identify the relevant operands for the instruction. Next the decoded instruction feeds into issue pick unit which selects an instruction with valid source operands to be executed. The selected instruction feeds into execute unit which executes the instruction wherein the execution can involve accessing data stored in L1 data cache D cache and accessing data stored in register file .
+
+Register file is configured to support register windowing and is associated with a current window pointer CWP . Source operands for an instruction can be retrieved from one or more source registers in a register window pointed to by the CWP. Moreover destination operands can be written to one or more destination registers pointed to by the CWP.
+
+At the end of the execution pipeline the instruction feeds into commit retire unit which commits results produced during execution of the instruction.
+
+Note that L1 I cache and L1 D cache both access a unified L2 cache which stores both instruction cache lines and data cache lines. L2 cache in turn communicates with memory system .
+
+Computer system also includes a special structure called a register use tracking array RUTA which supports lazy register fills by keeping track of which registers are valid as is described in more detail below.
+
+In one embodiment two copies of RUTA exist 1 a speculative copy maintained at decode unit and 2 a non speculative copy maintained at commit retire unit not shown in . During a pipeline flush the values in the non speculative copy are copied into the speculative copy.
+
+If at step CANRESTORE 0 NO at step a register underflow condition does not exist. In this case the decoded register window restore operation is executed step and the RUTA is not modified.
+
+As an example for the SPARC instruction set if the i0 operand in the instruction add i0 4 o0 needs to be restored from the stack the following helper instruction is inserted before the add instruction 
+
+When the instruction is decoded the system also determines whether the instruction writes any operands to destination registers. If so the system sets the RUTA entry for each such destination register to one step .
+
+In some embodiments prefetching can be used to improve performance for lazy register fills. When a restore register window instruction is decoded and a register window underflow is detected the following sequence of helper instructions can be inserted into the pipeline ahead of the RESTORE instruction. Note that the restored instruction increments CANRESTORE. 
+
+The purpose of the prefetch instructions is to pre load the two cache lines from the stack containing the local in windowed registers that may potentially be restored later. This optimization can improve performance by increasing the probability that the two cache lines will already be in the cache by the time they are accessed.
+
+In some embodiments lazy register fills can be selectively disabled in cases where a function tends to use a large number of registers. This can be accomplished as follows. For every occurrence of a register window underflow the number of registers actually used by the function is counted. For every N instances if in M of those instances the number of registers used exceeds a specified threshold then for the next N instances windowed registers are no longer lazily filled. Instead during a register window underflow the following sequence of helper instructions is inserted into the pipeline ahead of the RESTORE instruction.
+
+These helper instructions restore all of the window s registers from the stack in memory. Note that there is still no need to flush the pipeline nor is there a need to execute a fill trap handler. This optimization improves performance because restoring all the windowed registers when the window underflow is detected is less expensive than lazily restoring individual registers if the number of registers actually used by the function exceeds the threshold.
+
+The foregoing descriptions of embodiments have been presented for purposes of illustration and description only. They are not intended to be exhaustive or to limit the present description to the forms disclosed. Accordingly many modifications and variations will be apparent to practitioners skilled in the art. Additionally the above disclosure is not intended to limit the present description. The scope of the present description is defined by the appended claims.
+

@@ -1,0 +1,73 @@
+---
+
+title: Single-power dual-polarity Marx bank circuit
+abstract: A high voltage circuit is provided for electrical pulse generation. The circuit includes an input voltage supply, a ground potential, a difference load, inverting and non-inverting Marx bank circuits connected respectively to output voltage nodes. The voltage supply has positive and negative terminals, with ground connecting to the voltage supply at the negative terminal. The output voltage nodes connect to the load. The inverting Marx bank circuit has a first n-plurality of stages in parallel, connecting at a first stage to the positive terminal and at a last stage at the inverting output node. The non-inverting Marx bank circuit has a second plurality of stages in parallel, connecting at a first stage to the positive terminal and at a last stage at the non-inverting output node. The load combines the inverting output voltage of minus n-times the input voltage with the non-inverting output voltage of plus n-times the input voltage for a total of 2n-times the input voltage.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09300280&OS=09300280&RS=09300280
+owner: The United States of America as Represented by the Secretary of the Navy
+number: 09300280
+owner_city: Washington
+owner_country: US
+publication_date: 20131016
+---
+The invention described was made in the performance of official duties by one or more employees of the Department of the Navy and thus the invention herein may be manufactured used or licensed by or for the Government of the United States of America for governmental purposes without the payment of any royalties thereon or therefor.
+
+The invention relates generally to Marx bank electrical discharge. In particular the invention relates to halving the number of power supplies for a given voltage.
+
+Various high power applications include charging of a dipole antenna pulse charging streamer plasma generation high power microwave generation. Such high voltage HV operations benefit from using a dual polarity pulse HV HV in favor over a single polarity pulse HV ground . The conventional way to generate a high voltage single polarity pulse is to use a Marx bank originally developed by Erwin Otto Marx in 1924.
+
+Conventional Marx bank circuits yield disadvantages addressed by various exemplary embodiments of the present invention. In particular various exemplary embodiments provide a high voltage circuit for electrical pulse generation. The circuit includes an input voltage supply a ground potential a difference load inverting and non inverting Marx bank circuits connected respectively to output voltage nodes. The load combines the inverting output voltage of minus n times the input voltage with the non inverting output voltage of plus n times the input voltage for a total of 2n times the input voltage.
+
+The voltage supply has positive and negative terminals with ground connecting to the voltage supply at the negative terminal. The output voltage nodes connect to the load. The inverting Marx bank circuit has a first n plurality of stages in parallel connecting at a first stage to the positive terminal and at a last stage at the inverting output node. The non inverting Marx bank circuit has a second plurality of stages in parallel connecting at a first stage to the positive terminal and at a last stage at the non inverting output node.
+
+Each stage of the first and second n pluralities includes a charge loop and a first resistor the charge loop having a second resistor a gap switch and a capacitor in series. The first resistor connects in series to the positive terminal at a first node. The charge loop has a second node connecting the first resistor to the gap switch and to the capacitor. A third node connects the capacitor to the second resistor. A fourth node connects the second resistor to the gap switch. Adjacent stages connect together with the gap switch connecting to a downstream adjacent first resistor at the second node and to an upstream capacitor and second resistor at the fourth node.
+
+In the following detailed description of exemplary embodiments of the invention reference is made to the accompanying drawings that form a part hereof and in which is shown by way of illustration specific exemplary embodiments in which the invention may be practiced. These embodiments are described in sufficient detail to enable those skilled in the art to practice the invention.
+
+Other embodiments may be utilized and logical mechanical and other changes may be made without departing from the spirit or scope of the present invention. The following detailed description is therefore not to be taken in a limiting sense and the scope of the present invention is defined only by the appended claims.
+
+Various exemplary embodiments provide a circuit configuration to create a dual polarity high voltage pulse based on inverting and non inverting Marx banks. Higher voltages can be obtained with less electrical stress on the pulse generator than a conventional circuit and with only a single high voltage power supply.
+
+This configuration applies for any n stage Marx bank. For the purpose of this disclosure a 4 stage and 8 stage Marx bank are discussed as an example. Artisans of ordinary skill will recognize the description of four stages for an exemplary Marx bank as presented for explanatory purposes and thus not limiting to the scope of the invention.
+
+Development of high voltage pulses can be costly. The cost of a Glassman high voltage power supply can range from 2 000 to 15 000 dollars depending on the power rating and output voltage. Raising voltage levels requires increasing the quantity of insulating material needed to contain the electrical stress thereby producing bulky heavy systems. A dual polarity pulse generator produces a voltage pulse with half the electrical stress as a single polarity pulse generator with the same voltage amplitude. In other words the physical size and weight of a dual polarity pulse generator would be less than that of a single polarity pulse generator.
+
+In the exemplary embodiment shown a parallel circuit of four charge loops is disposed between input and output voltages and . Each charge loop has a circuit configuration that includes a spark gap switch a capacitor of Cand a first resistor connected in a triangular geometry. A second resistor connects the loop to the input voltage and to the adjacent gap switch . The first and second resistors and have electrical resistance of R. The input voltage such as from a direct current battery charges the capacitors for discharge across the gap switch .
+
+The discharge enables current to flow thereby yielding transient electrical power. The second resistor connects to the positive terminal and to the charge loop that comprises the switch the capacitor and the first resistor . An adjacent switch connects to a junction of the first resistor and the capacitor .
+
+For the single polarity Marx bank in the schematic view the four capacitors are charged in parallel by the input voltage up to V. Once the spark gap switch in the first stage closes either by triggering or self breakdown the rest of the switches also close through breakdown resulting in a series connection of the capacitors .
+
+In the case of an open or high impedance load this series connection of the capacitors results in voltage addition such that the output voltage is the number of stages n multiplied by the input voltage as V. The load can be considered any impedance between the HV output and ground . This Marx bank inverts the potential such that a positive input voltage results in a negative output voltage as V n V. The stored energy Ein the Marx bank equals the stored energy in one stage capacitor multiplied by the number of stages as E C V n.
+
+In order to double the output voltage the number of stages n must be increased by a factor of two from four stages to eight stages . As the number of stages increase the electric field at the higher end stages increase which for a conventional circuit produces a high amount of electrical stress on insulators of the Marx bank and leading to unwanted breakdown. Also the gap switches of the Marx bank do not generally break down simultaneously. Hence as the number of stages increases the Marx bank behaves more as a transmission line. Such action causes energy to be lost due to the delay in the closing times of the stage switches .
+
+Various exemplary embodiments provide a conceptually straight forward process to double the output voltage of a Marx bank using a dual polarity pulse. As described herein the process to generate a dual polarity pulse requires two Marx banks with two oppositely charged power supplies.
+
+For two charging voltages being opposite in polarity in the dual polarity Marx bank and the voltage difference corresponds to the sum of the outputs. For the four stage example the combined output can be expressed as 4 V 4 V 8 V where Vrepresents the input voltage . Essentially a dual polarity Marx bank is a larger Marx bank divided in half and charged in the middle with two power supplies of opposite polarity.
+
+Separately each of the two Marx banks has sufficiently brief discharge interval that the delay in the closing times of the switches is negligible. Moreover the induced electric fields at the end of the Marx bank will not result in unacceptable electrical stresses. The first disadvantage with such an arrangement involves the necessity of two power supplies rather than a single power supply. The second disadvantage involves requiring a triggering device to trigger the two Marx banks concurrently. A delay in the trigger time can produce an undesired pulse as shown in the graphical view .
+
+Each stage for the inverting Marx bank includes the loop and the second resistor describable as a circuit having four nodes and labeled clockwise with node disposed along a circuit line connecting to the positive terminal of the input voltage . The gap switch is disposed across nodes and . The second resistor is disposed across nodes and . The first resistor is disposed across the nodes and . The capacitor is disposed across nodes and .
+
+The second resistor connects between the input voltage and the switch while the first resistor connects between the ground and the switch . Thus the switch connects in parallel to the first resistor and the capacitor in series in a charge loop . Because the stages connect in parallel one terminal of the adjacent switch connects between the first resistor and the capacitor at the node .
+
+Each stage for the non inverting Marx bank includes the loop and the second resistor describable as having four nodes and labeled counter clockwise with node disposed along a circuit line connecting to the positive terminal of the input voltage . The gap switch is disposed across nodes and . The second resistor is disposed across nodes and . The first resistor is disposed across the nodes and . The capacitor is disposed across nodes and .
+
+The second resistor connects between the input voltage and the switch while the first resistor connects between the ground and the switch . Thus the switch connects in parallel to the first resistor and the capacitor in series in a charge loop . Because the stages connect in parallel one terminal of the adjacent switch connects between the first resistor and the capacitor with the opposite terminal of that adjacent switch connects to the node .
+
+The non inverting Marx bank has a positive output voltage of plus four times the input voltage or 4 V. The load joining the output voltages and exhibits a total potential difference of 8 Vby subtracting the inverting output voltage of 4 Vfrom the non inverting output voltage of 4 V. The exemplary Marx bank enables the doubling of the load as output voltage without inducing a delay .
+
+The alternate Marx bank also enables the doubling of the load as output voltage without a delay . However the Marx bank exhibits the same disadvantage as the Marx bank by using two power supplies and instead of a single power supply . Also the electrical stress is for the Marx bank equivalent to an 8 stage Marx bank utilizing one power supply.
+
+Such configurations in views and enable the advantage of reducing initiation time for charging and discharging the circuit. Additionally such designs facilitate scalability by doubling output voltage from conventional arrangements while avoiding pulse delay. The Marx bank creates a dual polarity pulse with a single power supply as opposed to two power supplies and of opposite polarity.
+
+This dual polarity pulse can be achieved by using the inverting Marx bank and the non inverting Marx bank . The inverting Marx bank creates an output voltage with a polarity opposite to the input voltage whereas the non inverting Marx bank creates an output voltage with the same polarity as the input voltage . The potential difference load combines the output voltages and .
+
+By placing a load between the two outputs of the non inverting Marx bank and inverting Marx bank the voltage across the load doubles. Assuming the charging time and identical discharge times of the two Marx banks and and they use the same switches the jitter reduces to the order of ns without a triggering device. The jitter can be greatly reduced further by incorporating a triggering device for pulse activation by command breakdown of the switch .
+
+The output of the load is the same as for an 8 stage Marx bank but with the electrical stress of a 4 stage Marx bank . In other words the dual polarity Marx bank with the single power supply has the same output voltage and stored energy as an n stage Marx bank but with the electrical stress of a half n stage Marx bank and thus much less prone to failure. Unlike other dual polarity systems only one power supply is needed opposed to two power supplies.
+
+Most pulse generators are built in house for a specific application and most of the applications are in the research field. However as these applications leave the field of research and become commercialized high power microwave for radar applications for example the commercial potential will increase.
+
+While certain features of the embodiments of the invention have been illustrated as described herein many modifications substitutions changes and equivalents will now occur to those skilled in the art. It is therefore to be understood that the appended claims are intended to cover all such modifications and changes as fall within the true spirit of the embodiments.
+

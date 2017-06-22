@@ -1,0 +1,67 @@
+---
+
+title: Unified modeling of HTML objects for user interface test automation
+abstract: According to some embodiments, a method and apparatus are provided to receive information to register an HTML object at an HTML object framework and receive identification parameters associated with the HTML object. A plurality of existing HTML objects is searched via a processor based on the received identification parameters. A HTML object is retrieved via the processor from the plurality of existing HTML objects and the retrieved HTML object is displayed.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09529782&OS=09529782&RS=09529782
+owner: SAP PORTALS ISRAEL LTD.
+number: 09529782
+owner_city: Ra'Anana
+owner_country: IL
+publication_date: 20130913
+---
+Many software applications function as web based applications which are accessed via a web browser such as for example Internet Explorer Chrome Firefox and Safari. To test a web based application using multiple web browsers test automation is frequently used. Test automation in this case refers to using a software tool to run repeatable tests against a web based application. A number of open source tools are available for test automation. Selenium for example is an open source test automation tool.
+
+A developer of test automation programming creates test code to manipulate an HTML object. This test code has to be developed maintained and adapted each time an automated action will be performed on the HTML object for each different type of web browser. Changing the properties of the HTML object also creates additional maintenance of the test code as well as increasing the time and expensive of web testing for the various web browsers.
+
+The present embodiments relate to a method to model and search existing HTML objects to facilitate reuse of the existing HTML objects for program code. HTML objects may be associated with a plurality of properties such as a name a unique identifier assigned by development framework e.g. JAVA SAPUI5 etc. a width a location on a screen etc. Furthermore HTML objects may be associated with methods e.g. displaying a list of all elements check or uncheck a box etc. . HTML objects may include different types of objects e.g. combobox list box check box etc. and each type of HTML object may have its own underlying structure that is unique to that type of HTML object. In some embodiments the underlying structure may comprise characteristics of the program coded associated with the HTML object that are unique to the particular type of HTML object such as but not limited to classes used to create the object as well as the methods and the properties associated with the particular type of HTML object.
+
+Knowing an underlying structure of an HTML object each type of HTML object may be modeled based on its underlying structure. For example an HTML object may be modeled on one or more identification parameters such as but not limited to an object identification ID of the HTML object one or more classes or class types of the HTML object or one or more application programming interfaces API that is used to manipulate the particular HTML object.
+
+Referring now to an embodiment of a method is illustrated. The method may be embodied on a non transitory computer readable medium. Furthermore the method may be performed by an apparatus such as but not limited to the apparatus of . At an HTML object may be registered with an HTML object framework application. The HTML object framework application may utilize a registration process to learn or receive information about each type of HTML object so that the HTML object framework application knows about the underlying structure associated with the particular HTML object. Since HTML objects may be changed to suit a particular situation e.g. name or behavior it may be difficult for a developer to locate a particular type of HTML object. However by using the HTML object framework a developer can search for HTML objects based on the HTML object s underlying structure.
+
+For illustrative purposes and to aid in understanding features of the specification an example will be introduced. This example is not intended to limit the scope of the claims. Now referring to browser automation code may comprise HTML code that comprises a plurality of HTML objects that are used for automatically testing a software application executed in a web browser or in a plurality of different web browsers. Furthermore the browser automation code may be associated with an open source automation tool framework that is used for test automation such as but not limited to Selenium s open source automation tool. The browser automation code may run on top of the open source automation tool.
+
+A user may wish to reuse a plurality of HTML objects from the browser automation code . Therefore the user may enter information about the objects into an HTML object framework application. In some embodiments the user may load the plurality of HTML objects into the HTML object framework to that the HTML object framework may learn about the underlying structure of the plurality of HTML objects.
+
+Now referring to an embodiment of an HTML object is illustrated. In the present embodiment the HTML object may define a combobox. As can be seen from the code associated with the HTML object the combobox may be associated with 1 a combobox class such as sapUiTfCombo as well as 2 an element ID of UserRole. In some embodiments the combobox of may be associated with a plurality of classes. Furthermore the underlying structure may comprise application programming interfaces APIs that manipulate the HTML object. In some embodiments specific object oriented classes that call an HTML object may be associated with the HTML object s underlying structure.
+
+Referring back to at identification parameters that are associated with an HTML object for browser automation code are received. The identification parameters may be received at an HTML object framework application.
+
+Continuing with the above example and again referring to browser automation code may comprise a plurality of HTML objects and the user may wish to reuse some of the HTML objects from browser automation code to create a new test program such as browser automation code . The user may search for specific HTML objects within browser automation code e.g. a source by entering identification parameters that are associated with a specific HTML object.
+
+In some embodiments the user may enter an indication associated with a combobox or other general types of an HTML object into the HTML object framework. A user might be motivated to enter an indication of a general type of an HTML object in order to retrieve multiple HTML objects associated with the general type. In other embodiments the user may enter in specific identification parameters associated with a particular HTML object e.g. a specific combobox that employs a specific class .
+
+For example and again referring to the user may wish to add a specific combobox to the browser automation code . The specific combobox may be searched for using identification parameters associated with the specific combobox. As illustrated at the specific combobox may be represented in HTML as a few HTML elements that are separated by a tags. The specific combobox may also associated with a combobox class such as sapUiTfCombo which is specific to SAPUi5 as well as other classes that define an underlying structure such as sapUiTfBack sapUiTfBrd and sapUiTfStd. Furthermore the specific combobox may have an element ID of UserRole. In the present example the user may submit a search with an element ID of UserRole that is associated with a sapUiTfCombo class. Alternatively the user may search sapUiTfCombo to determine all comboboxes associated with this class.
+
+In a second example the HTML elements illustrated at may be also associated with a Java class e.g. a class associated with an object oriented programming language . For example the combobox of may be associated with one or more Java classes as illustrated at of such as a Java class called selectItems which may also be used to identify an HTML object.
+
+In some embodiments the HTML object may be associated with one or more APIs that may be used to manipulate the HTML object. For example and in the case of a combobox HTML object the APIs may be used to identify a combobox find a combobox arrow open the combobox e.g. click on the arrow find menu items find requested items and or select an item in the combobox. An API may also be used to identify a specific combobox object if the type of manipulation is specific to a particular combobox object. The search criteria may be received at an apparatus such as apparatus of .
+
+Referring back to at a plurality of existing HTML objects are searched based on the received identification parameters. The searching may be performed via a processor such as the processor described with respect to . The search may return one or more HTML objects that comprise the identification parameters.
+
+Continuing with the above example and referring to the received identification parameters may be used as search criteria to search underlying structures of HTML objects of browser automation code to determine a specific HTML object such as the combobox of .
+
+At a HTML object is retrieved via the processor from the plurality of existing HTML objects. Continuing with the above example and referring to the identification parameters are used to search a plurality of HTML objects located in browser automation code and the search results with HTML object . Retrieving an HTML object may comprise displaying code e.g. HTML code JAVA code etc. that is associated with the retrieved HTML object.
+
+At the retrieved HTML object is displayed. For example the HTML code of a combobox such as the code displayed in may be displayed. The user may use copy the displayed HTML object for use in the new browser automation code .
+
+Now referring to an embodiment of an apparatus is illustrated. In some embodiments the apparatus may be associated with a determining HTML objects based on an underlying structure of the HTML object.
+
+The apparatus may comprise a storage device a medium a processor and memory . According to some embodiments the apparatus may further comprise a digital display port such as a port adapted to be coupled to a digital computer monitor television portable display screen or the like.
+
+The medium may comprise any computer readable medium that may store processor executable instructions to be executed by the processor . For example the medium may comprise a non transitory tangible medium such as but not limited to a compact disk a digital video disk flash memory optical storage random access memory read only memory or magnetic media.
+
+A program may be stored on the medium in a compressed uncompiled and or encrypted format. The program may furthermore include other program elements such as an operating system a database management system and or device drivers used by the processor to interface with peripheral devices.
+
+The processor may include or otherwise be associated with dedicated registers stacks queues etc. that are used to execute program code and or one or more of these elements may be shared there between. In some embodiments the processor may comprise an integrated circuit. In some embodiments the processor may comprise circuitry to perform a method such as but not limited to the method described with respect to .
+
+The processor communicates with the storage device . The storage device may comprise any appropriate information storage device including combinations of magnetic storage devices e.g. a hard disk drive optical storage devices flash drives and or semiconductor memory devices. The storage device stores a program for controlling the processor . The processor performs instructions of the program and thereby operates in accordance with any of the embodiments described herein.
+
+The main memory may comprise any type of memory for storing data such as but not limited to a flash driver a Secure Digital SD card a micro SD card a Single Data Rate Random Access Memory SDR RAM a Double Data Rate Random Access Memory DDR RAM or a Programmable Read Only Memory PROM . The main memory may comprise a plurality of memory modules.
+
+As used herein information may be received by or transmitted to for example i the apparatus from another device or ii a software application or module within the apparatus from another software application module or any other source.
+
+In some embodiments the storage device stores a database e.g. including information associated with underlying structures of HTML objects . Note that the database described herein is only an example and additional and or different information may be stored therein. Moreover various databases might be split or combined in accordance with any of the embodiments described herein.
+
+Embodiments have been described herein solely for the purpose of illustration. Persons skilled in the art will recognize from this description that embodiments are not limited to those described but may be practiced with modifications and alterations limited only by the spirit and scope of the appended claims.
+

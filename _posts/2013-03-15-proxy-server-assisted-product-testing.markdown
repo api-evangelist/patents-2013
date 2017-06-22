@@ -1,0 +1,77 @@
+---
+
+title: Proxy server assisted product testing
+abstract: A method is provided for a proxy server to assist in the testing of a product. The method includes receiving, from the product, a first request and passing the first request to a server, receiving, from the server, a first response to the first request and passing the first response to the product, recording the first request and the first response, generating one or more second responses from one or more simulated servers based on the first request and the first response, intercepting a second request from the product, in response to the second request, matching the second request to a second response, and sending the second response to the product.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09146841&OS=09146841&RS=09146841
+owner: VMware, Inc.
+number: 09146841
+owner_city: Palo Alto
+owner_country: US
+publication_date: 20130315
+---
+Unless otherwise indicated herein the approaches described in this section are not prior art to the claims in this application and are not admitted to be prior art by inclusion in this section.
+
+Software testing determines if a software application meets its design and behaves as intended. The software application may be tested in individual units of code and as an integrated unit. Test cases are written and executed to determine if the software application is working correctly under a variety of conditions.
+
+A programmer makes certain assumptions while writing test cases that depend on communication between the software product being tested and other software products such as servers. These assumptions may include among other things hardcoded server Internet Protocol IP addresses expected requests responses codes or the location and availability of test resources files. When the tests are run the servers may not be running or data in the servers may not be present. This causes test failures that need the programmer s time to investigate. These test failures are mostly false alarms which either forces the programmer to change the test cases or configuration files.
+
+There are mockup frameworks that allow the programmer to avoid these issues. Through these mockup frameworks all the server objects are mocked up to simulate communication between the product and the servers. In this approach there is considerable manual effort from the programmer to write code to mock up the objects. If there are any new server objects to be mocked up or any changes to existing mocked up objects the programmer needs to write significant code to make these changes. There is also effort needed to mock multiple servers of the same or different types in communication with the product.
+
+In one or more examples of the present disclosure a test automation booster TAB framework is provided to test a product that communicates with one or more servers. The TAB framework includes a TAB proxy server that records communication between the product and one server and uses the recorded communication to simulate one or more servers of the same type. In one example the TAB proxy server passes a request from the product to the server and the TAB proxy server returns a response to the request from the server to the product. The TAB proxy server records the request and the response in a template. The TAB proxy server creates instances of the template in volatile memory e.g. system memory hereafter referred to objects to simulate one or more servers. When the product sends the same request to a simulated server the TAB proxy server finds a matching object and responds with the recorded response of that simulated server. The process may be repeated for additional types of requests from the product to the server. The process may also be applied to requests from the product to additional types of servers. Thus the TAB framework eases and boosts the writing of test cases which directly enhances code coverage to produce a well tested product.
+
+The TAB framework includes a recording phase an optional customization phase and a play or replay phase. In the recording phase TAB proxy server records communication between product and server in a template in nonvolatile memory e.g. repository . In one example proxy server copies TAB software application on the communication between product and server and TAB software application records the communication in a template in repository . The communication between product and server is not encoded so TAB proxy application can read and understand the communication. The communication comprises a request from product to server and a response to the requests from server to product .
+
+In one example proxy server is a hypertext transport protocol HTTP proxy the request is part of a HTTP request from the product to proxy server destined for server and the response is part of a HTTP response to the HTTP request from server to proxy server . In one example the request includes a uniform resource locator URL having a hostname or an IP address that identifies a server e.g. server and a path that identifies a specific application programming interface API command. The server identifier also referred to the server base URL is a part of the URL including the host name. The API command identifier also referred to as the API URL is the path in the URL.
+
+The template may be in extensible markup language XML . The template includes a metadata section and an API details section. In the metadata section TAB software application initially stores information about one server e.g. server such as its server base URL and API type e.g. Representational State Transfer REST or Simple Object Access Protocol SOAP API . In the API details section proxy server initially stores information about one API command such as its API URL the details of the request in XML and the details of the response in XML. This process may be repeated for additional types of requests and responses between product and server and TAB software application may add each type of request and response to the API details section. The process may also be applied to requests from product to additional types of servers and TAB software application would create a template for each type of server.
+
+The metadata section may include additional information about the server when and as needed including policy based rules as described later. The metadata section can also be changed to specify another server IP address.
+
+In one example the template is a file store or a database in repository and the metadata and the API details sections are files in the file store or rows in the database. Examples of the present disclosure are shown using REST API in XML although the present disclosure may be implemented in other protocols including SOAP.
+
+In the optional customization phase the template is customized to simulate multiple servers and also the responses in the play phase. To simulate multiple servers the programmer may manually add additional metadata sections by duplicating an existing metadata section but assign unique host names or IP addresses to their server base URLs. Alternatively this can be automatically achieved via rules. For example the programmer may add a rule that specify a number of simulated servers and a range of IP addresses and TAB software application can automatically create objects that represent simulated servers based on this rule.
+
+The metadata section can also include policy based rules to simulate response for each of the simulated server. For example the programmer may add a rule to give an error response after three 3 unsuccessful attempts to simulate account lockouts or modify response based on some parameters of the request for an API.
+
+When customization is not needed the TAB framework performs a record replay function for a single server.
+
+In the play or replay phase product responds to test cases and interacts with TAB proxy server . Also in this phase TAB proxy server creates objects from the template based on the customization of the template. An object is an instance of a template in memory that simulates a single server i.e. it has a unique host name or IP address . TAB proxy server receives each request before server and processes it to determine if there is a matching object. A request matches an object when they have the same server identifier and the same API command identifier e.g. when they have the same server base URL and the same API URL . When a matching object is found TAB proxy server sends the recorded response in the matching object to product without redirecting the request to server .
+
+In one example TAB software application creates an object for each simulated server in memory. As described before TAB software application may generate the objects based on multiple metadata sections or based on a rule to create multiple objects based on one meta data section. Note that when no customization is involved the lone object and the template appear the same. Proxy server receives the request forwards it to TAB software application and waits for TAB software application to determine if there is a matching object to the request. When there is a matching object to the request TAB software application sends the recorded response in the matching object to product via proxy server . Note that TAB software application also applies any policy based rules in generating the response to the request.
+
+For simplicity method is demonstrated for one type of request one type of server and one test case. However it is understood that method may be applied to additional types of requests additional types of servers and additional test cases. Blocks to represent the record phase blocks to represent the customization phase and blocks to represent the re play phase of the TAB framework. Method may begin in block .
+
+In block which starts the recording phase server is set up on a physical or virtual machine. Server may be manually set up by a programmer or automatically set up by software. Block is followed by block .
+
+In block proxy server is set up on a physical or virtual machine. Proxy server may be manually or automatically set up. Block may be followed by block .
+
+In block TAB software application is installed to work with proxy server for implementing the TAB framework. TAB software application may be installed on the same or different machine as proxy server . TAB software application may be manually or automatically installed. Block may be followed by block .
+
+In block proxy server is configured as an intermediary between product and server . Proxy server may be manually or automatically configured. Block may be followed by block .
+
+In block product is configured to use proxy server as a proxy e.g. an HTTP proxy . Product may be manually or automatically configured. Block may be followed by block .
+
+In block one or more actions are performed on product so that it issues a request to server . The one or more actions may be manually or automatically performed. Block may be followed by block .
+
+In block proxy server forwards the communication between product and server to TAB software application and TAB software application creates a template in repository . For example a template for a request of a Get Hierarchies command is shown in . Block may be followed by block .
+
+In block which starts the customization phase a determination is made as to whether or not the template should be customized. For example the template may be customized to create objects that represent multiple simulated servers in a test case. For example the template may be customized to include policy based rules to simulate responses for each simulated server in a test case. This determination may be manually or automatically performed. If the template should be customized block may be followed by block . Otherwise block may be followed by block .
+
+In block the template is customized. As described above a programmer may customize the template to simulate multiple servers in the play phase and also the responses. For example the metadata section of the template for the request of the Get Hierarchies command is customized as shown in . Block may be followed by block .
+
+In block TAB application software generates objects from the template. Block may be followed by block .
+
+In block which begins the re play phase a test case is executed and product responds to the test case by issuing a request to a server via proxy server which forwards the request to TAB application software . The test case may be manually or automatically executed. Block may be followed by block .
+
+In block TAB application software determines if there is a matching object for the request. For example TAB application software determines the request has the same server base URL and the same API URL as an object. If so block may be followed by block . Otherwise block may be followed by block .
+
+In block TAB application software sends the recorded response in the matching object to product without redirecting the request to an actual server e.g. sever . Block may optionally loop back to block to process additional requests or method may end once the test case terminate.
+
+In block proxy server redirects the request to an actual server such as server . When server responds with a response proxy server forwards the response to product . Proxy server may record and update the template with the new request and response and update the existing objects or replacement with new objects created from the updated template to handle this new request and response in the future. Block may optionally loop back to block to process additional requests or method may end once the test cases terminate.
+
+The various embodiments described herein may be practiced with other computer system configurations including hand held devices microprocessor systems microprocessor based or programmable consumer electronics minicomputers mainframe computers and the like.
+
+With TAB framework the programmer would not have any difficulty in using servers as they are captured and mocked automatically. There would not be any problem either in setting up servers as it is just a click of a button to utilize TAB proxy server to capture a request and a response. The programmer may also generate multiple copies of the servers as well as mock any server. This reduces the challenges in setting up multiple servers such as Lightweight Directory Access Protocol LDAP server VMware vCenter Server and VMware vCloud Director. The programmer s effort in coding for test cases is significantly reduced as the TAB framework does the mocking automatically. As the TAB framework replays the mocked objects the test case execution time is significantly reduced. This could be used for pre flight testing before check in so as to test every change.
+
+From the foregoing it will be appreciated that various embodiments of the present disclosure have been described herein for purposes of illustration and that various modifications may be made without departing from the scope and spirit of the present disclosure. Accordingly the various embodiments disclosed herein are not intended to be limiting with the true scope and spirit being indicated by the following claims.
+

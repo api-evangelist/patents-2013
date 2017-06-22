@@ -1,0 +1,115 @@
+---
+
+title: Systems and methods for facilitation communications among customer relationship management users
+abstract: A method for synchronizing Customer Relationship Management data between a Software as a Service (“SaaS”) CRM provider and a mobile device. This method enables both read and write access from the mobile device whether a network connection to the SaaS provider is available or not. The method involves creating a local mobile device database to track portions or all of the SaaS provider database. In the case where a network separation occurs and the device and SaaS databases diverge, the synchronization method may be used to make the mobile device database and the SaaS database consistent and coherent again. In one embodiment, multiple local database tables are used to represent a single SaaS CRM table to facilitate synchronization, and a status indicator is used to visually and quickly convey status to the mobile user.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09305073&OS=09305073&RS=09305073
+owner: Luminix, Inc.
+number: 09305073
+owner_city: San Jose
+owner_country: US
+publication_date: 20130521
+---
+This application claims the priority benefit of U.S. Provisional Application No. 61 651 515 entitled Systems and Methods for Facilitating Communications Among Sales Employees filed May 24 2012 which is incorporated herein by reference.
+
+The present invention relates generally to the use of customer relationship management systems and more specifically but not by way of limitation to systems and methods for facilitating communications among customer relationship management users and in some instances to the bidirectional synchronization of customer relationship management systems and mobile devices.
+
+Both mobile computing and software services in the cloud have become very popular in the past decade. Customer relationship management systems such as the SalesForce software as service SaaS in particular have continued to grow in popularity although asynchronous e.g. offline interactions between these systems and mobile devices have yet to be optimized.
+
+While this technology is susceptible of embodiment in many different forms there is shown in the drawings and will herein be described in detail several specific embodiments with the understanding that the present disclosure is to be considered as an exemplification of the principles of the technology and is not intended to limit the technology to the embodiments illustrated.
+
+It will be understood that like or analogous elements and or components referred to herein may be identified throughout the drawings with like reference characters. It will be further understood that several of the figures are merely schematic representations of the present technology. As such some of the components may have been distorted from their actual scale for pictorial clarity.
+
+Referring now to the collective drawings which depict various aspects of bidirectional synchronization between CRM systems and mobile devices. Generally described the present technology allows a client e.g. mobile device to interact with a customer relationship management system such as the SalesForce SaaS to maintain a coherent data copy that provides high availability to the user. The present technology allows for application data synchronicity even in the presence of network loss or failure and syncs with the cloud master copy.
+
+As background a customer relationship management CRM system cloud deployment may consist of an RDBMS like set of tables otherwise known as entities . Individual CRM systems may have a specific terminology for this generic idea for example SalesForce terminology for a table within the CRM platform is an SObject hereinafter referred to as an SObject singular or SObjects plural . A constituent part of designing a client application that bidirectionally interacts e.g. synchronizes with the CRM system involves establishing a scheme for representing these SObjects locally in the client application and determining how information between the cloud SObjects and the locally stored SObjects is kept coherent e.g. synchronized or synced . Algorithms responsible for maintaining this coherence will be referred to as the Synchronization or Sync algorithm.
+
+Note that in some instances not all server side tables are necessarily cloned on the client. The Salesforce.com environment has dozens of tables and a purpose built client application is unlikely to require all of them although in some instances the present technology may utilize all server side tables of the CRM system.
+
+Each Createlist row contains the following fields i idx queue ordering index ii IsCreate TRUE if the entry represents a create FALSE if the entry represents a convertLead. For the create case iii TableName Table that the entry was created in iv TableId The tmpId assigned locally which needs to be replaced with a value assigned by the server.
+
+For the convertLead case the following fields correspond to the arguments to the Salesforce SOAP API convertLead . Note that the Account Contact and Lead Id fields may be either real server assigned values or a tmpId locally assigned value if there is a create operation corresponding to that Id ahead of the convert in the Createlist. The OpportunityId in the Createlist may be either a tmpId or empty if DoNotCreateOpportunity is TRUE . When created objects return from the server tmpId s may be swapped with real server Id s such that any subsequent entries in the Createlist as well as all other references in all other tables may be corrected.
+
+Additional SObjects include but are not limited to AccountId ContactId ConvertedStatus DoNotCreateOpportunity LeadId OpportunityName OverwriteLeadSource OwnerId and SendNotificationEmail.
+
+OpportunityId The tmpId may be assigned locally and may need to be replaced with a value assigned by the server. The Deletelist contains the set of entries that have been deleted locally. Note that the Createlist and Deletelist may be empty at the end of a successfully completed sync.
+
+Next we describe each of the tables in an SObject Table Group. The main table containing both locally changed and unchanged data entries. Conceptually this is convenient because the application may need only look at one table to get its latest data. Special fields all boolean CuriumCreated This entry was locally create CuriumUpdated This entry was locally updated CuriumConverted Lead only This entry was locally converted.
+
+ todelete A list of Ids of objects deleted by the server since the last sync.  tosync Not typically needed . A list of IDs of extra objects to fetch from the server.  synced The actual modified objects fetched from the server.  orig A backup of the original unchanged object is made when an object is locally updated or deleted. This is to assist future resolves with the corresponding server object or undo the change.
+
+The present technology may utilize the prefix Curium or any other arbitrary prefix that does not conflict with naming conventions of the CRM system as a way of distinguishing local only bookkeeping fields.
+
+The main  orig and  synced tables for each SObject contain the entire set of fields that the cloud SObject table contains. Of these the Id field is interesting because it may be used to uniquely identify object instances and correlate instances between the client and server.
+
+The present technology may support both online and offline modes see . Online mode is straightforward and the interaction between remote and local objects is depicted in . Note that for online cases the remote object may be accessed first and the local object may be updated to keep the local database as current as possible.
+
+Also note that for the online update case in order to reduce the probability of a field client and server update collision the object value may be refreshed immediately upon entering the update flow. This ensures the client has the most up to date copy of the server value possible before attempting the edit.
+
+With regard to offline mode accesses for the user may be satisfied locally and writes e.g. application data may be stored locally and posted to the cloud server during a future synchronization pass.
+
+The following description considers various techniques for implementing a state of the art offline mode. A useful performance enhancing hybrid mode is an offline read plus an online write mode. This is equivalent to the behavior of a write through cache where reads are satisfied locally and are hence fast . Moreover writes of application data may go directly to the server specifically to the customer database of the CRM system such that the server has the most up to date information possible and the client may not be required to carry un synced changes. This mode works especially well when most accesses are reads and the user is willing to manually initiate a sync when the most up to date server data is needed.
+
+A Sync process may begin by attempting at get a new Salesforce sessionId if needed loginIfSessionOld . This attempts to prevent failure of the Sync operation due to an expired session.
+
+The next stage reads the SObject schema. Schema information is stored to the property table to permit offline access as well as to enable change detection for the cloud schema. In the event of a cloud schema change the client must perform SQL commands to affect an equivalent change locally to the main  orig and  synced tables in the SObject table group. Schema for all SObjects may be queried in parallel. Salesforce APIs used REST GET SObject describe. 
+
+The initSObjects stage reads the saved schema information from the property table so the Sync algorithm has access to the field information for each SObject.
+
+The syncWindowEndDate stage calculates the time window for performing the main Sync as well as a secondary time window for syncing server side deletes. Unfortunately due to limitations in the SalesForce getDeleted API it may not be possible to maintain a single window. This stage uses the end date and time of the previously completed sync as the beginning date and time for the current sync. The end time for the current sync is determined by asking the SalesForce cloud server for its current time. In order to keep things as consistent as possible the sync algorithm uses the same start and end time for all SObjects. Salesforce APIs used SOAP getServerTime. .
+
+The queryDeleted stage queries the server for any deleted object Ids for a given SObject within the calculated time range. Any IDs are stored in the  todelete table. Server SObject tables can be queried in parallel and having a per SObject  todelete table makes it easy to avoid collisions when storing the results of the concurrent getDeleted queries. Salesforce APIs used SOAP getDeleted. 
+
+The queryModWave stage queries the cloud for records created or modified within the sync time window. SObject schema information is used to query all fields of each SObject or at least a portion thereof. SObjects may be queried in parallel and the results of the query are stored in the  synced table. The Query Wave concept is described in detail in a later section with reference to . As a special optimization to give the application a feeling of immediate usability the first ever time a sync is performed the first ever sync may safely store results for this stage directly into the main table since it s known that no resolve will need to be performed. Salesforce APIs used REST SOQL query. 
+
+The queryModBatch stage may not typically be used. If any data is specifically desired to be fetched by the Bulk API queries for those requests may be issued here. The fetchModified stage may also not typically be used. If any rows in any of the  tofetch tables are populated they are read here and stored in their corresponding  synced tables. Generally there is nothing to do here because the queryModWave stage may read all the created and modified objects itself as will be described in greater detail below.
+
+Additionally the fetchModBatch stage may not typically be used. If any batch queries were issued in the queryModBatch stage the results may be read back here and written to the appropriate  synced table depending on the SObject.
+
+The syncResolve stage walks through the full set of detailed resolve stages see below . The syncFinish stage cleans up any final sync property values and returns the application to a state of sync not in progress.
+
+The resolveServerDeletes stage applies all server initiated deletes by iterating through the entries in all  todelete tables. Any other table row with an Id value of the deleted object is also deleted.
+
+The resolveLocalDeletes stage applies all locally initiated deletes from the Deletelist table. In the event that the server rejects the delete operation the user may be presented with a dialogue asking if he wishes to abandon the change. Doing so simply involves moving the  orig entry for the deleted item back to the main table and deleting the corresponding Deletelist entry. Salesforce APIs used REST DELETE query. 
+
+The resolveCreateConvert stage applies all locally initiated create and convertLead operations. These are stored in the Createlist FIFO. In the event that the server rejects the create or convert operation the user may be presented with a dialogue asking if he wishes to abandon the change. Alternately if there is some data validation problem the user may instead edit a field in the failing object and reattempt the operation. Salesforce APIs used REST POST query. 
+
+The resolveThreeWayDiff stage does a three way diff between the main  orig and  synced tables. Entries that have changed on the server get written locally and vice versa. In the case that a field has changed on both the client and server the user is prompted to select a winner. Other server rejections of the transaction may result in the user abandoning or editing and retrying as for the create case. Salesforce APIs used REST PATCH query. 
+
+The resolveMoveSyncedToMain stage moves the remaining  synced table entries into their respective main tables.
+
+At the end of a successful complete run of the sync algorithm assuming there has not been any additional work performed by the user while the sync is running the SObject main tables will contain all of the object information and this information will be up to date with the server. All of the other tables in the SObject Table Group  orig  synced  todelete  tosync will be empty and the Createlist and Deletelist shared support tables will be empty.
+
+Note that if the ServerWrittenThisSynclteration property is set at any point during the iteration or the query fetch stages pull new or modified records from the server the entire sync algorithm is repeated. This provides a converging effect to ensure that when the sync is done the client and server are as up to date as possible.
+
+One of the key properties of the SObject Table technique is that the main table may in some instances be made available to the application for user interaction via various actions some of which will be described in greater detail below.
+
+At sync time the Createlist may be dequeued and the Salesforce REST API POST create may be called to get a real ID. This real ID needs to be swapped for the tmpId in all places or at least a portion thereof. Finally the ServerWrittenThisSynclteration property is set to indicate that another iteration of the sync algorithm should take place. This will fetch back the fully formed entry just created on the server since the newly created server side object s LastModifiedDate will be later than the end window timestamp of the current sync iteration. We want the server s full copy because some fields may be calculated and we don t want to reengineer that work on the client side.
+
+Abandoning a create action simply involves deleting the main table entry and deleting the associated Createlist entry.
+
+At sync time the main table  orig table and  synced table are compared for this object correlated by Id . If there is no  synced table entry then this object has not been touched on the server side since the last sync and the main table object is written to the server. If there is a  synced table entry then the  orig table is compared to determine whether the field was modified locally or on the server. In the case where both a local and a server modification was made to the same field the user may be prompted to settle a winner or choose a new value entirely. After doing this three way compare the appropriate fields are written to the server with a Salesforce REST API PATCH create call and the local copies of the object such that they are the same. At this point the  orig and  tosync table entries if existing are deleted and the CuriumUpdated value in the main table should be set to FALSE since the value now tracks the server value .
+
+Finally the ServerWrittenThisSynclteration property is set to indicate another iteration of the sync algorithm should take place. This will fetch back the fully formed entry just written on the server since the server side object s LastModifiedDate will be later than the end window timestamp of the current sync iteration. Abandoning an update just requires moving the  orig entry back to the main table.
+
+At sync time the Createlist is dequeued with an IsCreate FALSE item and the Salesforce SOAP API convertLead is called to get a real Id. This real Id needs to be swapped for the tmpId in all places. Finally the ServerWrittenThisSynclteration property is set to indicate another iteration of the sync algorithm should take place. This will fetch back the fully formed entry just created on the server since the newly created server side object s LastModifiedDate will be later than the end window timestamp of the current sync iteration. We want the server s full copy because some fields may be calculated and we don t want to reengineer that work on the client side.
+
+Referring now to which illustrates a QueryWave technique for selecting and transferring objects from the Salesforce cloud server to the client. In this instance the client sends a series of SOQL request waves to the server reading the data a chunk at a time. Each wave request corresponds to one month s or partial month s worth of created modified records. Limiting the amount of data in any one chunk reduces the likelihood the server will timeout in failure trying to build an enormous query response. All SObjects may be queried in parallel for best performance.
+
+The components shown in are depicted as being connected via a single bus . The components may be connected through one or more data transport means. Processor unit and main memory may be connected via a local microprocessor bus and the mass storage device peripheral device s portable storage device and graphics display may be connected via one or more input output I O buses.
+
+Mass storage device which may be implemented with a magnetic disk drive or an optical disk drive is a non volatile storage device for storing data and instructions for use by processor unit . Mass storage device may store the system software for implementing embodiments of the present invention for purposes of loading that software into main memory .
+
+Portable storage medium drive s operates in conjunction with a portable non volatile storage medium such as a floppy disk compact disk digital video disc or USB storage device to input and output data and code to and from the computer system of . The system software for implementing embodiments of the present invention may be stored on such a portable medium and input to the computer system via the portable storage medium drive s .
+
+Input devices provide a portion of a user interface. Input devices may include an alphanumeric keypad such as a keyboard for inputting alpha numeric and other information or a pointing device such as a mouse a trackball stylus or cursor direction keys. Additionally the system as shown in includes output devices . Suitable output devices include speakers printers network interfaces and monitors.
+
+Graphics display may include a liquid crystal display LCD or other suitable display device. Graphics display receives textual and graphical information and processes the information for output to the display device.
+
+Peripheral device s may include any type of computer support device to add additional functionality to the computer system. Peripheral device s may include a modem or a router.
+
+The components provided in the computer system of are those typically found in computer systems that may be suitable for use with embodiments of the present invention and are intended to represent a broad category of such computer components that are well known in the art. Thus the computer system of may be a personal computer hand held computing system telephone mobile computing system workstation server minicomputer mainframe computer or any other computing system. The computer may also include different bus configurations networked platforms multi processor platforms etc. Various operating systems may be used including Unix Linux Windows Macintosh OS Palm OS Android iPhone OS and other suitable operating systems.
+
+It is noteworthy that any hardware platform suitable for performing the processing described herein is suitable for use with the technology. Computer readable storage media refer to any medium or media that participate in providing instructions to a central processing unit CPU a processor a microcontroller or the like. Such media may take forms including but not limited to non volatile and volatile media such as optical or magnetic disks and dynamic memory respectively. Common forms of computer readable storage media include a floppy disk a flexible disk a hard disk magnetic tape any other magnetic storage medium a CD ROM disk digital video disk DVD any other optical storage medium RAM PROM EPROM a FLASHEPROM any other memory chip or cartridge.
+
+While various embodiments have been described above it should be understood that they have been presented by way of example only and not limitation. The descriptions are not intended to limit the scope of the technology to the particular forms set forth herein. Thus the breadth and scope of a preferred embodiment should not be limited by any of the above described exemplary embodiments. It should be understood that the above description is illustrative and not restrictive. To the contrary the present descriptions are intended to cover such alternatives modifications and equivalents as may be included within the spirit and scope of the technology as defined by the appended claims and otherwise appreciated by one of ordinary skill in the art. The scope of the technology should therefore be determined not with reference to the above description but instead should be determined with reference to the appended claims along with their full scope of equivalents.
+

@@ -1,0 +1,59 @@
+---
+
+title: Evaporator with internal restriction
+abstract: An evaporator includes a vaporization chamber having a monomer inlet and a vapor outlet. There is a vapor nozzle in the vapor outlet. The evaporator also includes a collar positioned between the vaporization chamber and the vapor nozzle which increases the pressure in the evaporation chamber while the conductance through the nozzle is substantially unchanged.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=08904819&OS=08904819&RS=08904819
+owner: Samsung Display Co., Ltd.
+number: 08904819
+owner_city: Yongin
+owner_country: KR
+publication_date: 20131104
+---
+This application is a continuation of co pending and now allowed U.S. patent application Ser. No. 12 650 586 filed Dec. 31 2009 and entitled EVAPORATOR WITH INTERNAL RESTRICTION .
+
+The invention relates generally to evaporators for flash evaporation and more particularly to an evaporator having improved evaporator pressure stability and film uniformity.
+
+Flash evaporation of a liquid single or multi component uses an ultrasonic nozzle to atomize the liquid into small droplets which are then dispersed in a container maintained at elevated temperature evaporator . When the droplets contact the walls of the evaporator they instantaneously transform to the vapor state without boiling. This process eliminates the separation or distillation of the individual components of the liquid and maintains the equivalent composition of the liquid in the vapor phase. The flash evaporation process is generally described for example in U.S. Pat. Nos. 4 954 371 and 4 842 893 which are incorporated herein by reference.
+
+One problem with this process is that the atomization process is not perfectly constant which results in fluctuations of the amount of liquid transformed into the vapor phase over time. In one application of the flash evaporation process the vapor phase is transported to a nozzle where the vapor is directed towards a substrate that passes by the nozzle and onto which the vapor condenses to form a thin liquid layer. Fluctuations in the amount of vapor as measured by the pressure in the evaporator result in variation of the flux reaching the substrate causing an undesirable variation in the thickness of the condensed liquid layer.
+
+One solution to this problem was the introduction of baffles in the evaporator in an attempt to homogenize the vapor pressure before it exits through the nozzle. The use of baffles is described for example in U.S. Pat. No. 5 902 641 which is incorporated herein by reference. However the use of internal baffles has been only partially successful in reducing the vapor fluctuation. Moreover this method adds complexity and expense to the evaporator fabrication.
+
+In addition in order for a uniform liquid film to be formed on the substrate the pressure in the evaporator should reach a steady state condition in as short a time as possible. This reduces the overall time for the discrete coating process and increases process throughput for manufacture. One method that has been used to reduce the time needed to reach a steady state condition is to narrow the opening of the vapor nozzle through which the vapor exits to the substrate. Although this does reduce the time for the evaporator to reach a steady state pressure the machining tolerances of the vapor nozzle become more difficult to achieve making it more expensive and difficult to fabricate components.
+
+Therefore there is a need for an evaporator having reduced variation in the amount of vapor reaching the substrate. There is also a need for a less costly evaporator which reaches steady state quickly.
+
+The present invention meets this need by providing an improved evaporator. The evaporator includes a vaporization chamber having a monomer inlet and a vapor outlet. There is a vapor nozzle in the vapor outlet. The evaporator also includes a collar positioned between the vaporization chamber and the vapor nozzle. The pressure in the evaporator is increased and the conductance through the nozzle is substantially unchanged. This reduces the impact of any variation in the atomization process.
+
+The conductance through the nozzle is an important characteristic in reducing the variation in the amount of vapor reaching the substrate. Conductance is the amount of vapor that can pass through an opening for a given pressure differential. The easiest way to change the conductance is to vary the diameter of the opening. Alternatively methods using tubes or closely spaced parallel plates can also be used.
+
+In one embodiment there is a collar located between the evaporation chamber and the vapor nozzle through which the vapor exits onto the substrate. The collar forms a constriction such as a small aperture which is designed to match the equivalent restriction that had previously been obtained by narrowing the vapor nozzle exit. The result is that the evaporator pressure is increased while the vapor nozzle exit width remains unchanged. This improves the stability of the evaporator pressure with regard to variations in the atomization process because there is much more vapor contained in the evaporator. Consequently any fluctuation in the atomization process represents a much smaller fraction of the total vapor. At the same time the vapor pressure at the vapor nozzle is essentially unchanged because the amount of vapor flowing is the same and the conductance through the slit of the nozzle is unchanged. The result is that the deposition process average rate of liquid accumulation on the substrate is unchanged and a much more consistent and uniform thin film is deposited. Thus the collar provides a low cost solution to the problems found in prior art processes.
+
+An additional feature that results from the present invention is that the stabilization of the evaporator pressure allows for the use of feedback to vary the pressure controllably allowing for changes in film thickness in controlled manner. Previously the fluctuations occurred with a short time period making feedback difficult because of the slow response time of the fluid flow control system. In one implementation of the fluid flow control system the flow rate is controlled by the rate of displacement of a piston pump containing the fluid. The pump is connected to the atomization nozzle on the evaporator by a length of tubing. The lag time delay of the flow rate to changes in the displacement rate of the pump is similar to the frequency of the fluctuations of the pressure in the evaporator. This makes it difficult to provide a stable feedback system that reduces the pressure fluctuations.
+
+An evaporator is shown in . There is a vaporization chamber with a fluid inlet . This can be applied to various types of fluid systems including but not limited to monomers oligomers resins and the like as would be understood by those of skill in the art. There is an atomizer . There are heaters to heat the surface of the vaporization chamber . Monomer flow through the atomizer is atomized into particles or droplets which strike the heated surface whereupon the particles or droplets are flash evaporated into a gas evaporate or composite vapor. The gas flows through the vapor outlet and out of the vapor nozzle to the surface being coated where it condenses.
+
+The cross sectional area of the vapor outlet is less than the cross sectional area of the vaporization chamber and the vapor nozzle has a cross sectional area less than the cross sectional area of the vapor outlet.
+
+There is a collar between the vaporization chamber and the vapor nozzle . The collar has a cross sectional area less than the cross sectional area of the vapor nozzle. The removable collar can be easily inserted into and removed from the vapor outlet. Thus the amount of vapor which flows out the vaporization chamber is reduced without having to reduce the size of the vapor nozzle.
+
+The collar can be removable i.e. not permanently attached to the evaporator or the vapor outlet if desired. For example it can be inserted in and removed from the vapor outlet. Typically the collar will simply slide into the vapor outlet and be held by friction. However other arrangements are possible. Alternatively the collar can be permanently attached if the size of the aperture does not need to be changed.
+
+Currently one of the formulation criteria for monomer blends is the evaporation rate and deposition rate using an existing evaporator configuration. The use of the removable collar allows the evaporator configuration to be changed simply by changing the removable collar. This expands the range of blends which can be used to include blends which do not deposit well using the existing configuration. If a particular blend of monomer had less consistent atomization perhaps as a result of higher viscosity the hole size of the collar could be reduced to increase the pressure amount of vapor in the evaporator to average the fluctuations in atomization over a greater time.
+
+Various embodiments of the removable collar are shown in . As shown in the collar has a first portion which is inserted into the vapor outlet and a second portion . The first portion has a outwardly extending portion which prevents further insertion into the vapor outlet. The outwardly extending portion can be used to grip the collar when it is to be removed. In addition the second portion of the collar can be connected to the outwardly extending portion if desired. In this embodiment the outwardly extending portion is a flange. Alternatively one or more tabs could be used instead of a flange.
+
+The second portion of the collar has a cross sectional area less than the cross sectional area of the vapor outlet. There can be a series of second portions having different sized openings which can be used with the same first portion for example.
+
+The first portion of the collar can be an annular ring with an annular flange. The second portion can be a second annular flange with a smaller cross sectional area than the vapor outlet.
+
+The first and second portions can be connected permanently or they can be removably connected. A removable connection allows the same first portion to be used with more than one second portion. Removable connections include but are not limited to screws threaded helical surfaces lugs and grooves tapered connections bayonet connections and snap connections. Permanent connections include but are not limited to welding. With a permanent connection the entire collar would be changed rather than just the second portion.
+
+In the outwardly extending portion also has an inwardly extending portion which reduces the cross sectional area. The outwardly and inwardly extending portions can be a flange if desired. For example the collar can be an annular ring with an annular flange extending outward from the ring and inward from the ring.
+
+The collar can be any desired shape including but not limited to cylindrical square rectangular triangular or other polygonal shape. It will generally be the same shape as the vapor outlet although it could be a different shape if desired. The collar will typically be cylindrical.
+
+The collar can be a unitary piece or it can be two or more pieces. If the collar is in two or more pieces e.g. as shown in then there can be multiple second portions having different cross sectional areas. If the collar is a unitary piece e.g. as shown in then multiple collars will be needed to provide a range of cross sectional areas.
+
+While certain representative embodiments and details have been shown for purposes of illustrating the invention it will be apparent to those skilled in the art that various changes in the compositions and methods disclosed herein may be made without departing from the scope of the invention which is defined in the appended claims.
+

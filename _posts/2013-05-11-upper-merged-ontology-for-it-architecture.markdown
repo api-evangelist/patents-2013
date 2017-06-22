@@ -1,0 +1,109 @@
+---
+
+title: Upper merged ontology for it architecture
+abstract: An information technology (IT) architecture upper merged ontology which includes an upper merged ontology that is a representation framework for combined knowledge sources that are used in business and information technology; an upper merged ontology knowledge base containing information derived from an analysis of business and technical services pertaining to the IT architecture application; a plurality of semantic web application programming interfaces (APIs) that allow access to the upper merged ontology as a semantic web; a reasoning and constraint language (RaCL) that is a scripting language having the capabilities of model creation, automated reasoning and search and query operations such that scripts developed in the reasoning and constraint language can execute using the semantic web APIs; and a computer processor for representing and performing execution tasks.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09183501&OS=09183501&RS=09183501
+owner: International Business Machines Corporation
+number: 09183501
+owner_city: Armonk
+owner_country: US
+publication_date: 20130511
+---
+The present invention relates to a single formalized IT architecture ontology which can absorb and reference knowledge from specialist ontologies.
+
+Ontologies are the structural frameworks for organizing information and are used in artificial intelligence the Semantic Web systems engineering software engineering biomedical informatics library science enterprise bookmarking and information architecture as a form of knowledge representation about the world or some part of it. The creation of domain ontologies is also fundamental to the definition and use of an enterprise architecture framework.
+
+Contemporary ontologies share many structural similarities regardless of the language in which they are expressed. As mentioned above most ontologies describe individuals instances classes concepts attributes and relations.
+
+There are many partial ontologies for architectures in specialist areas but they do not address the end to end knowledge management required for enterprise architecture integration.
+
+The various advantages and purposes of the exemplary embodiments as described above and hereafter are achieved by providing according to a first aspect of the exemplary embodiments an information technology IT architecture upper merged ontology which includes an upper merged ontology that is a representation framework for combined knowledge sources that are used in business and information technology the upper merged ontology including a plurality of domain models for a given IT architecture application an upper merged ontology knowledge base containing information derived from an analysis of business and technical services pertaining to the IT architecture application a plurality of semantic web application programming interfaces APIs that allow access to the upper merged ontology as a semantic web a reasoning and constraint language RaCL that is a scripting language having the capabilities of model creation automated reasoning and search and query operations such that scripts developed in the reasoning and constraint language can execute using the semantic web APIs and a computer processor for representing and performing execution tasks involving the upper merged ontology the upper merged ontology knowledge base the semantic APIs and the RaCL.
+
+According to a second aspect of the exemplary embodiments there is provided a method of developing an operational model for an IT architecture application which includes developing an information technology IT architecture upper merged ontology for a given IT architecture application comprising 
+
+According to a third aspect of the exemplary embodiments there is provided a computer program product for developing an operational model for an IT architecture application which includes a non transitory computer readable storage medium having computer readable program code embodied therewith. The computer readable program code includes computer readable program code configured to develop an information technology IT architecture upper merged ontology for a given IT architecture application comprising 
+
+The exemplary embodiments relate to an upper merged ontology which supports knowledge representation and functionality for maintenance constraint processing and reasoning from specialist ontologies.
+
+In particular the exemplary embodiments relate to an information technology IT architecture upper merged ontology including four principal components namely an upper merged ontology UMO an upper merged ontology knowledge base UMOKB semantic web applications and a reasoning and constraint language RaCL .
+
+The UMO is a representation framework for combined knowledge sources that are used in business and information technology. The UMO includes a plurality of domain models for a given IT architecture application.
+
+In the context of the exemplary embodiments the UMO central knowledge representation is based on domain ontologies. A domain ontology or domain specific ontology models a specific domain which represents part of the world.
+
+Particular meanings of terms applied to that specific domain are provided by domain ontology. For example the word card has many different meanings. An ontology about the domain of poker would model the playing card meaning of the word while an ontology about the domain of computer hardware would model the punched card and video card meanings.
+
+A number of domain ontologies may be provided to represent different facets of knowledge management in the specialist areas of the UMO and to populate the UMO dimensions. The ontology templates as shown in may be 
+
+The above list of domain ontologies is not meant to be exclusive and for any given application there may be additional domain ontologies. In a preferred exemplary embodiment the domain model IT architecture model operational model metrics library and pattern library may be the most significant domain ontologies and may be included in every UMO.
+
+An upper ontology or foundation ontology is a model of the common objects that are generally applicable across a wide range of domain ontologies. It employs a core glossary that contains the terms and associated object descriptions as they are used in various relevant domain sets.
+
+In the context of the exemplary embodiments the Upper Merged Ontology component UMO is a representation framework for the combined knowledge sources which are used in business and IT architecture. The UMO is organized according to the following dimensions which contain the core glossary for the IT architecture domains and references to the domain ontology concepts and objects which are relevant 
+
+Shown in are the nine domain models representative of the exemplary embodiments. At this point the UMO is just a framework as there may be no data filling each of the domains.
+
+The IT architecture UMO further includes a UMOKB which contains information derived from an analysis of business and technical services pertaining to the application. Often databases of relevant information can be read into the UMOKB. The UMOKB contains descriptions of the business and technical services defined in other source databases and knowledge bases maintains relationship links between these elements and provides indices to the original definitions in the sources.
+
+The IT architects working on the application need to develop an operational model as a basis for the IT architecture application. However there is not yet an operational model to work from.
+
+RaCL is designed as a platform for developing tools as a scripting language and as a sublanguage in a logic programming environment. The IT architecture UMO further includes RaCL which has the capabilities of model creation automated reasoning and search and query operations such that scripts developed in RaCL can execute using the semantic web APIs.
+
+RaCL may execute processes to search the upper merged ontology knowledge base and extract knowledge pertaining to the IT architecture application and processing the results to generate dependency and interface relationships within an operational model domain ontology.
+
+In the context of RaCL model creation may include specifying views over the UMO for consideration and applying search reasoning and transformation algorithms to those views automated reasoning may include generation of inferences over models in problem solving and automated learning support and search and query operations may include execution of search via relational inference or pattern matching over the knowledge in the UMO space.
+
+RaCL is a functional language with object oriented capabilities and is extensible by use of service interfaces to specialist libraries or external systems. The current version of RaCL may be implemented in the Clojure Lisp and Java languages with all API s implemented as Java class libraries. Programs and scripts developed in RaCL may be compiled to pure Java for distribution and execution. The currently supported programming syntax for RaCL is an extension of the Clojure syntax.
+
+The IDE integrated development environment for RaCL is an editing execution control and debugging tool which facilitates development of RaCL programs and scripts. The RaCL Runtime Environment is a highlevel interpreter which accesses the core environment for all key functions. It can also be used to launch a compiler for RaCL programs which generate the equivalent Java implementations.
+
+A graphical representation of the RaCL language component architecture is illustrated in . The architecture may include the following components Core Language and Support Services Workspace Management Information Management and Integration with External Systems Services . Each of these components is described in detail hereafter.
+
+The RaCL Core Language and Support Services provide the runtime execution functionality for RaCL programs and scripts and may be made up of the following elements 
+
+The Workspace Management component of RaCL provides support for memory operations for both normal operations and for reasoning support and may include the following elements.
+
+The Information Management component of RaCL provides support for interfaces to databases data stores ontologies and document management systems that may be hosted locally to the RaCL runtime environment or distributed over networks or the Web and may include the following elements.
+
+Still referring to the RaCL Language Component Architecture may integrate with External Systems Services such as External Data Stores external Ontologies Architecture Repositories Data Warehouses Document Management Systems and Architecture Pattern Libraries .
+
+The IT architecture UMO further includes semantic web APIs to allow access to the UMO as a semantic web. A semantic web provides a common framework that allows specialist data to be shared and reused across application enterprise and community boundaries.
+
+The Semantic Web API is a Java library that allows any using application to access the UMO as a Semantic Web according to the W3C World Wide Web Consortium classification. The library may provide functionality for creation and update of knowledge elements in the UMO or related ontologies search and retrieval via pattern matching relational or inferential search evaluation of logical or reasoning operations against elements of the UMO or related ontologies which includes enforcing or testing constraints inherent in the ontology models and execution of RaCL models or functions and return of the results. The API s object model may use the UMO class model and include a number of transformation tools to allow information retrieved from the UMO to be mapped into other notations and languages for example XML and UML notations.
+
+The UMO may use the OWL Web Ontology Language and RDF resource description framework as the core representation notations. The constraints types allowed relationships and inferences may be described within the context of the OWL notation. They are accessible to the RaCL and any other tool which can parse the OWL notation.
+
+Finally an IT architecture for the application may be created from the operational model domain ontology dependency and interface relationships.
+
+There is also an exemplary embodiment of a method disclosed as illustrated in . The method pertains to developing an operational model for an IT architecture application. In a first step of the method box an information technology IT architecture ontology for a given application is developed. The IT architecture ontology may comprise the IT architecture ontology discussed previously which includes an upper merged ontology UMO an upper merged ontology knowledge base UMOKB a plurality of semantic web APIs and a reasoning and constraint language RaCL .
+
+Thereafter the UMOKB is populated with information derived from an analysis of business and technical services pertaining to the IT architecture application box . The UMOKB may be populated in one exemplary embodiment by reading relevant databases directly into the UMOKB.
+
+Then RaCL processes may be executed to search the upper merged ontology knowledge base and extract knowledge pertaining to the IT architecture application and processing the results to generate dependency and interface relationships within an operational model domain ontology box .
+
+Finally as shown in box an architecture for the application may be created from the operational model domain ontology dependency and interface relationships.
+
+The computing devices implementing the exemplary embodiments may be a general purpose computer or a special purpose computing device such as a hand held computer. is a block diagram that illustrates one exemplary hardware environment of the computing devices. The exemplary embodiments may be implemented using a computer comprised of microprocessor means random access memory RAM read only memory ROM and other components. The computer may be a personal computer server mainframe computer hand held device or other computing device. Resident in the computer or peripheral to it may be a storage device of some type such as a hard disk drive floppy disk drive CD ROM drive tape drive or other storage device.
+
+Generally speaking the software implementation of the exemplary embodiments program in may be tangibly embodied in a computer readable medium such as one of the storage devices mentioned above. The program may comprise instructions which when read and executed by the microprocessor of the computer may cause the computer to perform the steps necessary to execute the steps or elements of the exemplary embodiments.
+
+As will be appreciated by one skilled in the art aspects of the exemplary embodiments may be embodied as a system method service method or computer program product. Accordingly aspects of the exemplary embodiments may take the form of an entirely hardware embodiment an entirely software embodiment including firmware resident software micro code etc. or an embodiment combining software and hardware aspects that may all generally be referred to herein as a circuit module or system. Furthermore aspects of the exemplary embodiments may take the form of a computer program product embodied in one or more computer readable medium s having computer readable program code embodied thereon.
+
+Any combination of one or more computer readable medium s may be utilized. The computer readable medium may be a computer readable signal medium or a computer readable storage medium. A computer readable storage medium may be for example but not limited to an electronic magnetic optical electromagnetic infrared or semiconductor system apparatus or device or any suitable combination of the foregoing. More specific examples a non exhaustive list of the computer readable storage medium would include the following an electrical connection having one or more wires a portable computer diskette a hard disk a random access memory RAM a read only memory ROM an erasable programmable read only memory EPROM or Flash memory an optical fiber a portable compact disc read only memory CD ROM an optical storage device a magnetic storage device or any suitable combination of the foregoing. In the context of this document a computer readable storage medium may be any tangible or non transitory medium that can contain or store a program for use by or in connection with an instruction execution system apparatus or device.
+
+A computer readable signal medium may include a propagated data signal with computer readable program code embodied therein for example in baseband or as part of a carrier wave. Such a propagated signal may take any of a variety of forms including but not limited to electro magnetic optical or any suitable combination thereof. A computer readable signal medium may be any computer readable medium that is not a computer readable storage medium and that can communicate propagate or transport a program for use by or in connection with an instruction execution system apparatus or device.
+
+Program code embodied on a computer readable medium may be transmitted using any appropriate medium including but not limited to wireless wireline optical fiber cable RF etc. or any suitable combination of the foregoing.
+
+Computer program code for carrying out operations for aspects of the exemplary embodiments may be written in any combination of one or more programming languages including an object oriented programming language such as Java Smalltalk C or the like and conventional procedural programming languages such as the C programming language or similar programming languages or even Microsoft Excel Access. The program code may execute entirely on the user s computer partly on the user s computer as a stand alone software package partly on the user s computer and partly on a remote computer or entirely on the remote computer or server. In the latter scenario the remote computer may be connected to the user s computer through any type of network including a local area network LAN or a wide area network WAN or the connection may be made to an external computer for example through the Internet using an Internet Service Provider .
+
+Aspects of the exemplary embodiments have been described above with reference to flowchart illustrations and or block diagrams of methods apparatus systems and computer program products according to the exemplary embodiments. It will be understood that each block of the flowchart illustrations and or block diagrams and combinations of blocks in the flowchart illustrations and or block diagrams can be implemented by computer program instructions. These computer program instructions may be provided to a processor of a general purpose computer special purpose computer or other programmable data processing apparatus to produce a machine such that the instructions which execute via the processor of the computer or other programmable data processing apparatus create means for implementing the functions acts specified in the flowchart and or block diagram block or blocks.
+
+These computer program instructions may also be stored in a computer readable medium that can direct a computer other programmable data processing apparatus or other devices to function in a particular manner such that the instructions stored in the computer readable medium produce an article of manufacture including instructions which implement the function act specified in the flowchart and or block diagram block or blocks.
+
+The computer program instructions may also be loaded onto a computer other programmable data processing apparatus or other devices to cause a series of operational steps to be performed on the computer other programmable apparatus or other devices to produce a computer implemented process such that the instructions which execute on the computer or other programmable apparatus provide processes for implementing the functions acts specified in the flowchart and or block diagram block or blocks.
+
+The flowchart and or block diagrams in the Figures illustrate the architecture functionality and operation of possible implementations of systems methods service methods and computer program products according to the exemplary embodiments. In this regard each block in the flowchart or block diagrams may represent a module segment or portion of code which comprises one or more executable instructions for implementing the specified logical function s . It should also be noted that in some alternative implementations the functions noted in the block may occur out of the order noted in the Figures. For example two blocks shown in succession may in fact be executed substantially concurrently or the blocks may sometimes be executed in the reverse order depending upon the functionality involved. It will also be noted that each block of the block diagrams and or flowchart illustration and combinations of blocks in the block diagrams and or flowchart illustration can be implemented by special purpose hardware based systems that perform the specified functions or acts or combinations of special purpose hardware and computer instructions.
+
+It will be apparent to those skilled in the art having regard to this disclosure that other modifications of the exemplary embodiments beyond those embodiments specifically described here may be made without departing from the spirit of the invention. Accordingly such modifications are considered within the scope of the invention as limited solely by the appended claims.
+

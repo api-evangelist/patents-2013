@@ -1,0 +1,77 @@
+---
+
+title: Fixture for system-level glove testing of contact permeation
+abstract: A system and method for testing contact permeation of a glove using a mannequin hand having fingers and a thumb. A hand cradle supports the mannequin hand with the palm of the hand facing away from the hand cradle. A patterned weight block applies pressure to the palm, fingers, and thumb of the hand. A weight block is placed on the patterned weight block and the whole assembly is placed in an air tight containment box. The mannequin hand is covered with a protection layer, a sorptive glove layer, and a test glove. The test glove is contaminated with the chemical of interest. Pressure is applied to the palm, fingers, and thumb of the test glove, and the contaminant that permeates through the test glove into the sorptive glove layer is collected and measured.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09086351&OS=09086351&RS=09086351
+owner: The United States of America as Represented by the Secretary of the Army
+number: 09086351
+owner_city: Washington
+owner_country: US
+publication_date: 20130314
+---
+The invention described herein may be manufactured used and licensed by or for the United States Government.
+
+The present invention relates generally to a fixture and test method to test chemical protection efficiency of complete gloves. More specifically the present invention relates to a fixture and test method for quantifying permeation breakthrough mass in a contact scenario.
+
+Permeation testing has traditionally focused on the use of swatches to measure breakthrough time or total cumulative mass of breakthrough at a specified time. Such an approach is appropriate for testing materials however these fixtures are limited to flat swatches.
+
+Previous efforts have shown the need for contact testing to measure the contamination level on the underside of a protective material. While vapor methods for whole gloves have been developed they may underestimate the breakthrough potential for low volatility compounds pesticides and chemical warfare agents which pose a greater hazard from contact uptake into the skin as opposed to vapor exposure.
+
+According to an embodiment of the present invention a system for testing contact permeation of a glove is disclosed. The system includes a mannequin hand with fingers and a thumb. A hand cradle adapted to contact a back surface of the mannequin hand and the fingers to stabilize the hand with a palm of the hand facing outward away from the hand cradle. A patterned weight block shaped to fit onto the palm of the mannequin hand for applying pressure to the palm fingers and thumb of the hand. A weight block is disposed on the outer surface of the patterned weight block. An air tight containment box receives the mannequin hand supported by the hand cradle and having the patterned weight block on the palm of the mannequin hand and the weight block disposed on the outer surface of the patterned weight block.
+
+Further according to an embodiment of the present invention a method for testing contact permeation of a contaminant through a glove includes providing a mannequin hand with fingers and a thumb. A protective layer constructed of a material selected from the group consisting essentially of nitrile butyl neoprene or other glove material that is appropriate for the containment of the contaminant being tested is placed over the mannequin hand. A sorptive glove layer is placed over the protective glove to capture the contamination through a test glove. A test glove covered with contaminant is placed over the sorptive glove layer. Pressure is applied to the palm fingers and thumb of the test glove. The contaminant that permeates through the test glove in the sorptive glove layer is collected and analyzed.
+
+In the description that follows numerous details are set forth in order to provide a thorough understanding of the present invention. It will be appreciated by those skilled in the art that variations of these specific details are possible while still achieving the results of the present invention. Well known processing steps are generally not described in detail in order to avoid unnecessarily obfuscating the description of the present invention.
+
+In the description that follows exemplary dimensions may be presented for an illustrative embodiment of the invention. The dimensions should not be interpreted as limiting. They are included to provide a sense of proportion. Generally speaking it is the relationship between various elements where they are located their contrasting compositions and sometimes their relative sizes that is of significance.
+
+In the drawings accompanying the description that follows often both reference numerals and legends labels text descriptions will be used to identify elements. If legends are provided they are intended merely as an aid to the reader and should not in any way be interpreted as limiting.
+
+The improved embodiment for permeation testing of as glove is disclosed. The permeation testing measures the time or total cumulative mass of breakthrough at a specified time. The application to a finished article or glove system enables the testing of regions otherwise hard to reach such as between the fingers of the glove.
+
+It should be noted that while methods for measuring the contamination level of vapors on the underside of a protective material forming a glove have been developed they may underestimate the breakthrough potential for low volatility compounds pesticides and chemical warfare agents which pose a greater hazard from contact than vapor uptake into the skin.
+
+Therefore the method disclosed herein tests the whole glove using contact testing to obtain a true measure of protection of the protective material of a glove in a contact scenario.
+
+To test a glove a mannequin hand is constructed of a material such as plastic or nylon such as by rapid prototyping. Referring to there is shown a top plan view of a left mannequin hand with a thumb a back surface fingers and a palm
+
+As shown in a hand cradle is manufactured of a material such as plastic or nylon such as by rapid prototyping. The hand cradle is designed to contact the back surface of the mannequin hand and the fingers so as to securely hold and stabilize the hand with the palm facing upward away from the hand cradle .
+
+As shown in there is provided is a patterned weight block designed to fit the shape of the mannequin hand and to apply pressure to the palm the fingers and the thumb . Referring to the patterned weight block has an inner surface that is shaped to fit snuggly against the contours of the palm and the fingers of mannequin hand . A pressure system including a rubber expansion chamber that is provided on the outer surface of the patterned weight block . The expansion chamber of pressure system can be inflated though the valve stem to a desired pressure which is determined by a pressure gauge . As discussed hereinafter the expansion chamber is disposed between the thumb of the mannequin hand and the outer surface of the patterned weight block .
+
+Referring to there is shown the mannequin hand mounted in the test fixture which includes the hand cradle the patterned weight block and as weight block . The back surface of mannequin hand and the back surface of fingers are disposed on the hand cradle so that the mannequin hand is securely held and stabilized with the palm facing upwards. The patterned weight block fits between the palm and the thumb . The expansion chamber is inflated to press against the inner surface of thumb to exert pressure away from the outer surface of weight block . The weight block typically of stainless steel is disposed on the outer surface of the patterned weight block to apply a constant pressure preferably about 1 psi against the to the entire mannequin hand except the thumb which is achieved with the pressure system alone. Note that the weight has a portion which is shaped to receive the thumb so that no pressure from the weight is exerted against the thumb.
+
+The mannequin hand is divided into a plurality of regions for example as shown in and mathematically analyzed to determine the pressure at each region. As described above the weight of the patterned weight block and the rubber expansion chamber are selected to apply a constant pressure preferably about 1 psi against the entire mannequin hand . The pressure can be adjusted by adding or removing weight depending on the test needs. The purpose of applying a constant pressure is to ensure that all layers of the glove and absorptive layer as described hereinafter are in intimate contact with each other.
+
+Referring to there is illustrated a closed air tight containment box into which the test fixture including the cradle the mannequin hand the weight block and the weight as shown in is inserted. The closed air tight containment box as shown includes a top and bottom cover and respectively of stainless steel and front back and end sidewalls and respectively of clear plastic such as a polycarbonate so that the interior of the containment box can be observed. The top cover can be affixed to the bottom cover with conventional latches on either side of the front and back sidewalk and respectively. The airtight stainless steel and polycarbonate containment box includes rubber gaskets designed to seal the test fixture within the containment box and prevent cross contamination during equilibrium in an environmentally controlled chamber not shown .
+
+First a foil tray not shown is placed at the bottom of the containment box . This ensures that any residue that might be left in the containment box from a previous experiment does not affect the present experiment. Next the hand cradle is placed on the foil tray in preparation to receive and support the mannequin hand .
+
+The mannequin hand is expensive to construct. It is accordingly initially protected with a glove as shown in by forming a protective layer so that the mannequin hand is not compromised during the test by contacting the contaminant being tested. The glove which forms a protective layer can be constructed of nitrile butyl neoprene or other glove material that is appropriate for protection against the contaminant being tested. Once the glove is in place the open end near the wrist of the mannequin hand is sealed closed by a closure mechanism not shown such as crimping heat sealing or other similar mechanism.
+
+Further as shown in a sorptive glove layer is placed over the protective glove . This sorptive glove layer captures the contamination through the test glove . Multiple sorptive layers may be needed depending on the capacity of the sorptive layer to allow the contaminant being tested to become attached to or absorbed in the sorptive layer. The sorptive glove layer can be made from latex nitrile vinyl or other material that is available as a glove and will sorb the contaminant of interest.
+
+Next the test glove is placed over the sorptive glove layer . The test glove could be any glove to be tested. The test glove is sealed closed at the open end by the wrist of the mannequin hand by a closure mechanism such as crimping heat sealing or some other similar mechanism.
+
+Continuing the mannequin hand now encased with the inner protective glove the sorptive glove layer and the test glove is placed on the cradle already disposed in the foil tray located at the bottom of the containment box .
+
+Next the test glove hand is contaminated with the contaminant of interested at the density and contamination level desired. Standard permeation testing occurs at the 10 g mlevel. The contaminant should only be applied where there is contact between the patterned weight block the expansion chamber and the test glove on the mannequin hand .
+
+A foil liner is next wrapped around the weight block . The contaminant of interest can be applied to the area of the foil in contact with the test glove . The foil contacts the thumb region of the test glove so as to contaminate the thumb region.
+
+The expansion chamber provided on the outer surface of the patterned weight block can be inflated though the valve stem to a desired pressure which is determined by a pressure gauge . The expansion chamber which is disposed between the thumb portion of the test glove and the foil covering the outer surface of the patterned weight block applies the desired pressure of about 1 psi against the thumb portion of the test glove .
+
+Continuing the weight block is placed on the patterned weight block and the air tight containment box is sealed closed as shown in .
+
+Then the airtight containment box is placed in an environmentally controlled chamber not shown and set for the desired time and temperature.
+
+After the fixed amount of time the air tight containment box is removed from the environmentally controlled chamber and the box unlatched. The weight block and the patterned weight block are removed from the cradle . The protective foil on the weight block is disposed of using appropriate hazardous waste disposal procedures.
+
+Continuing the glove encased mannequin hand the cross section of which is shown in is removed from the cradle . The contaminated test glove is removed from the mannequin hand and disposed of again using appropriate hazardous waste disposal procedures.
+
+The sorptive glove layer s are removed from the mannequin hand and extracted in solvent. An appropriate solvent and solvent volume should be chosen with consideration of extraction efficiency of the contaminant from the chosen sorptive layer . After extraction for a desired time period 10 minutes to 4 hours aliquots are drawn for analysis in order to quantify permeation breakthrough mass in a contact scenario. The advantage of the method as disclosed herein is that the whole glove is combined with contact testing to obtain a true measure of protection in a contact scenario. This is especially useful for testing region difficult to test in fixtures that require flat swatches such as between the fingers.
+
+Finally the inner protective glove layer is removed from the mannequin hand and disposed of using appropriate hazardous waste disposal procedures.
+
+Although the invention has been shown and described with respect to a certain preferred embodiment or embodiments certain equivalent alterations and modifications will occur to others skilled in the art upon the reading and understanding of this specification and the annexed drawings. In particular regard to the various functions performed by the above described components assemblies devices etc. the terms including a reference to a means used to describe such components are intended to correspond unless otherwise indicated to any component which performs the specified function of the described component i.e. that is functionally equivalent even though not structurally equivalent to the disclosed structure which performs the function in the herein illustrated exemplary embodiments of the invention. In addition while a particular feature of the invention may have been disclosed with respect to only one of several embodiments such feature may be combined with one or more features of the other embodiments as may be desired and advantageous for any given or particular application.
+

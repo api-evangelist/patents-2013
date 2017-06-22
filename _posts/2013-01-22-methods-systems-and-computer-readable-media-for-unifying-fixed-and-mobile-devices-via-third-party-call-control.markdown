@@ -1,0 +1,199 @@
+---
+
+title: Methods, systems, and computer readable media for unifying fixed and mobile devices via third party call control
+abstract: Methods, systems, and computer readable media for unifying fixed and mobile devices via third party call control (3PCC) are disclosed. The method is performed at a dedicated application server (AS) that supports a third-party call control (3PCC) interface. According to one method, a call addressed to a unified subscriber identifier associated with a terminating subscriber is detected, where the terminating subscriber is associated with two or more terminating endpoints. The call is offered to each of the terminating endpoints by initiating signaling to each of the terminating endpoints using the 3PCC interface. One of the terminating endpoints used to answer the call is detected and the call is redirected to the terminating endpoint used to answer the call. Signaling messages are sent to all of the terminating endpoints other than the terminating endpoint used to answer the call for instructing the terminating endpoints to release resources associated with the offered call.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09161190&OS=09161190&RS=09161190
+owner: GENBAND US LLC
+number: 09161190
+owner_city: Plano
+owner_country: US
+publication_date: 20130122
+---
+This application is a continuation of pending U.S. patent application Ser. No. 12 950 641 filed Nov. 19 2010 the contents of which are hereby incorporated herein by reference in their entirety.
+
+The subject matter described herein relates to communications between fixed and mobile devices. More specifically the subject matter relates to methods systems and computer readable media for unifying fixed and mobile devices via third party call control.
+
+As the number of communications devices has increased and with it the number of network identities associated with individual users there exists an increased desirability for a single identity that can be used in sessions across all of a user s communication devices both fixed and mobile along with a consistent set of voice and multi media applications that can be leveraged for all devices.
+
+One conventional solution for providing such a single identity in SIP based pre IMS networks as well as 3GPP based IMS networks includes having both the fixed and mobile devices register with the same application server. For example all fixed and mobile clients may be required to register with SIP application servers using the same identity. However this solution has several drawbacks such as inflexibility in the identities selectable by a user and interoperability difficulties between various types of networks and devices. Additionally while third party call control interfaces currently exist on PBX and other end office nodes these interfaces are not currently used to create a single identity for subscribers across both fixed and mobile devices.
+
+Accordingly in light of these difficulties a need exists for improved methods systems and computer readable media for unifying fixed and mobile devices without excessive use of telephony resources.
+
+Methods systems and computer readable media for unifying fixed and mobile devices via third party call control 3PCC are disclosed. The method is performed at a dedicated application server AS that supports a third party call control 3PCC interface. According to one method a call addressed to a unified subscriber identifier associated with a terminating subscriber is detected where the terminating subscriber is associated with two or more terminating endpoints. The call is offered to each of the terminating endpoints by initiating signaling to each of the terminating endpoints using the 3PCC interface. One of the terminating endpoints used to answer the call is detected and the call is redirected to the terminating endpoint used to answer the call. Signaling messages are sent to all of the terminating endpoints other than the terminating endpoint used to answer the call for instructing the terminating endpoints to release resources associated with the offered call.
+
+A system for unifying fixed and mobile devices via third party call control is also disclosed. The system includes a third party call control 3PCC interface for detecting a call addressed to a unified subscriber identifier associated with a terminating subscriber where the terminating subscriber is associated with two or more terminating endpoints. The 3PCC interface is configured to offer the call to each of the terminating endpoints by initiating signaling to each of the terminating endpoints. The 3PCC interface is further configured to detect one of the terminating endpoints used to answer the call. A communications module is configured to redirect the call to the terminating endpoint used to answer the call and to send signaling messages to all of the terminating endpoints other than the terminating endpoint used to answer the call for instructing the terminating endpoints to release resources associated with the offered call.
+
+The subject matter described herein for unifying fixed and mobile devices via third party call control may be implemented using a non transitory computer readable medium to having stored thereon executable instructions that when executed by the processor of a computer control the processor to perform steps. Exemplary non transitory computer readable media suitable for implementing the subject matter described herein include chip memory devices or disk memory devices accessible by a processor programmable logic devices and application specific integrated circuits. In addition a computer readable medium that implements the subject matter described herein may be located on a single computing platform or may be distributed across plural computing platforms.
+
+As used herein the term third party call control or 3PCC refers to the ability of one entity to create a call session in which communication is actually between other parties. In the traditional telephony context third party call control allows one entity i.e. the controller to set up and manage a communications relationship or telephone call between two or more other parties. For example third party call control may be used for operator services where an operator creates a call that connects two participants together and call conferencing. Third party call control is possible using the mechanisms specified within the Session Initiation Protocol SIP and can include the traditional ones on the PSTN but also new ones such as click to dial and next Generation 9 1 1. Click to dial allows a user to click on a web page to speak to a customer service representative. The web server then creates a call between the user and a customer service representative. The call can be between two phones a phone and an IP host or two IP hosts. Next Generation 9 1 1 allows for re connection of a media stream to an alternate end point if the original destination end point becomes unavailable without dropping the original emergency call which has a separate media stream to the 3PCC server . 3PCC is described in more detail in Ecma technical report TR 87 telephony application programming interface TAPI telephony server application programming interface TSAPI java telephony application programming interface JTAPI as well as the following Internet engineering task force IETF request for comments RFCs RFC 3261 SIP Session Initiation Protocol RFC 3312 Integration of Resource Management and Session Initiation Protocol SIP RFC 3725 Best Current Practices for Third Party Call Control 3pcc in the Session Initiation Protocol SIP RFC 4032 Update to the Session Initiation Protocol SIP Preconditions Framework which are incorporated by reference herein in their entireties.
+
+As used herein the term unified subscriber identity refers to any type of unique address for a user such as a directory number DN . A unified subscriber identity may include an existing address such as a user s home or work telephone number. A unified subscriber identity may encompass multiple identifiers or addresses associated with a user or device.
+
+As used herein the term endpoint refers to a point of termination i.e. communications device for a communications session such as a landline telephone SIP phone mobile phone cellular or otherwise .
+
+As used herein the term fixed refers to a state of being stationary attached established or stable in terms of physical and or logical location.
+
+As used herein the term mobile refers to a state of moving capable of moving or being moved from one location to another location.
+
+As used herein the term node is a connection point communications device in a communications network such as a redistribution point or a communication endpoint. A physical network node therefore is an active electronic device that is attached to a network and is capable of sending receiving or forwarding information over a communications channel. In the fixed telephone network a node may be a public or private telephone exchange a remote concentrator or a computer providing an intelligent network service. In cellular communication switching points and databases such as the Base station controller Home Location Register Gateway GPRS Support Node GGSN and Serving GPRS Support Node SGSN are examples of nodes. Other exemplary nodes may include MSCs STPs SCPs SSRs and ASs.
+
+As used herein the term originate refers to the process of creating or bringing into being a call or session.
+
+As used herein the terms deflect deflecting and deflection refer to the process of diverting a call or session from a first destination endpoint to a second destination endpoint before the call or session is answered by the first destination endpoint.
+
+As used herein the term transfer refers to the process of diverting a call or session from a first destination endpoint to a second destination endpoint after the call or session is answered by the first destination endpoint.
+
+As used herein the term grab refers to the process of requesting the diversion or transfer of a call or session from a first destination endpoint to a second destination endpoint.
+
+As used herein the term instruct refers to signaling or communicating a task to be performed. For example a first node may instruct a second node by sending one or more messages to the second node.
+
+As used herein the term alert refers to the process of a device performing an action intended to make the user aware of a session e.g. ringing when the session is offered to a device associated with the user.
+
+As used herein the term page refers to the process of locating a registered mobile client within the radio access network.
+
+As used herein the term service refers to a set of related software functionality together with the policies that control its usage. Services may be deployed and used on the Internet or private IP networks and may also be accessed from traditional circuit switched networks. Exemplary services include voice over IP VoIP IP television IPTV presence instant messaging and location based services.
+
+As used herein the term registration refers to a representation of a dynamic piece of state information maintained by the network. A registrar is a server that accepts registrations from users and stores the registrations in a database known as a location service database.
+
+As used herein the terms register and registering refer to the process of recording or associating a user with a particular location and or IP address in a database. Registering allows a user agent to create modify and delete registrations.
+
+As used herein the term session refers to a packet stream compatible with the session initiation protocol SIP . Exemplary packet streams may include real time transport protocol RTP packets for carrying voice and or video content.
+
+The subject matter described herein includes methods systems and computer readable media for unifying fixed and mobile devices via third party call control. This includes maintaining a single identity across multiple fixed and or mobile devices including fixed VoIP or TDM endpoints that are not registered with a SIP application server. Such endpoints can include endpoints associated with PBX nodes within corporate networks soft switches which host VoIP and TDM endpoints and traditional telephony TDM end offices. The subject matter described herein accomplishes this by integrating third party call control interfaces with offboard application servers to allow the user to leverage a single set of screening routing services for all devices extend a session to a mobile and instruct the node which hosts the fixed device to deflect the call to the application server for final connection establishment. For example an application server logically sitting above all other network nodes necessary for connecting the various fixed and mobile endpoints that may be associated with the user may be specially dedicated for the purpose of performing unified third party call control. Moreover users may designate one of their existing subscriber identifiers e.g. their home telephone number as their unified subscriber identity used to unify all of their services where the user s other subscriber identifiers e.g. SIP URI email address work telephone number etc. may be associated with the unified subscriber identifier in the dedicated AS. According to other embodiments the subject matter described herein also provides for an existing session to be grabbed from one device to the other as needed by the subscriber. Specific non limiting examples of various embodiments will now be described in greater detail below.
+
+Signaling node may support a third party call control interface and host fixed endpoint . Signaling node may take the form of a public branch exchange PBX class 5 end office switch call server soft switch or telephony time division multiplexed TDM node. A single identity may be defined i.e. unified subscriber identity on signaling node which hosts fixed endpoint for each user from among a plurality of users. This single identity typically takes the form of a directory number DN but may include any type of unique address for the user.
+
+Fixed endpoint may be the same as fixed endpoint with the exception that fixed endpoint may be associated with a different subscriber and therefore may be served by a different signaling node.
+
+SIP application server is a network communications node that hosts and executes services and may interface with one or more S CSCFs using SIP. An application server may be used to provide uniform services across the fixed endpoint and mobile endpoint. The application server leverages the 3PCC interface to register interest in a specific endpoint and receive notifications whenever telephony sessions originate or terminate to the fixed endpoint. The application server may leverage the 3PCC interface to request notification events whenever a session originates or terminates to the fixed endpoint as well as progress of such sessions.
+
+Public switched telephone network PSTN is circuit switched network collection of interconnected public telephone networks that was designed primarily for voice traffic.
+
+Mobile switching center MSC is the primary service delivery node for GSM CDMA and is responsible for routing voice calls and SMS as well as other services. MSC may be responsible for setting up and releasing end to end connections handling mobility and hand over requirements during calls and taking care of charging and real time pre paid account monitoring. It may be appreciated that the subject matter described herein may be applied to both pre IMS and IMS configurations where the mobile device is accessed via an IMS core network.
+
+Mobile device may include a cellular telephone smart phone PDA or similar mobile communications endpoint. It is appreciated that a single subscriber may be associated with multiple endpoints such as fixed endpoint work phone and mobile device cell phone .
+
+Media server may refer to a device configured to provide a variety of functions. A media resource function MRF may provide media related functions such as media manipulation e.g. voice stream mixing and playing of tones and announcements. Each MRF may be further divided into a media resource function controller MRFC and a media resource function processor MRFP . The MRFC may include a signaling plane node that interprets information received from an AS and S CSCF to control the MRFP. The MRFP may include a media plane node used to mix source or process media streams as well as to manage access rights to shared resources. The media resource broker MRB may include a functional entity that is responsible for both collection of appropriate published MRF information and supplying of appropriate MRF information to consuming entities such as the AS. The MRB can be used in two modes query mode and in line mode. For query mode the AS may query the MRB for media and using the response of MRB may set up the call. For in line mode the AS may send a SIP INVITE to the MRB and the MRB may set up the call.
+
+Internet protocol IP network is a network that uses the IP protocol which is part of the TCP IP protocol suite. This includes the Internet private LANs and other packet switched data and voice networks.
+
+Softswitch gateway is a central device in a telecommunications network which connects telephone calls from one phone line to another entirely by means of software running on a computer system. This work was formerly carried out by hardware with physical switchboards to route the calls. A softswitch is typically used to control connections at the junction point between circuit and packet networks
+
+First subscriber may include a user capable of using an endpoint in order to communicate with other users via other endpoints in a communications network. It may be appreciated that first subscriber may be associated with a plurality of both mobile and fixed communications devices. For example first subscriber may be associated with a home landline telephone having a fixed home telephone number a home cellular phone having a mobile home number a work VoIP phone having a fixed work number and a work Blackberry having a mobile work number.
+
+Base transceiver station BTS facilitates wireless communication between user equipment UE and a network. UEs are devices like mobile phones handsets WLL phones computers with wireless Internet connectivity WiFi and WiMAX gadgets etc. The network can be that of any of the wireless communication technologies like GSM CDMA WLL WAN WiFi WiMAX etc. BTS is also referred to as the radio base station RBS node B in 3G Networks or simply the base station BS .
+
+Base station controller BSC handles allocation of radio channels receives measurements from the mobile phones and controls handovers from BTS to BTS except in the case of an inter BSC handover in which case control is in part the responsibility of the anchor MSC . A single BSC may have tens or even hundreds of BTSs under its control. One function of BSC may be to act as a concentrator where many different low capacity connections to BTSs with relatively low utilization become reduced to a smaller number of connections towards the mobile switching center MSC with a high level of utilization . BSC may also provide all the required data to the operation support subsystem OSS as well as to the performance measuring centers.
+
+Second subscriber may include a user similar to first subscriber described above. However it may be appreciated that second subscriber may belong to different or the same network s as first subscriber and may be associated with different devices and or subscriber identifiers e.g. telephone numbers URIs etc. 
+
+At step the session may be routed to a unified subscriber identity which may cause the session to terminate at the node which hosts the fixed device associated with the unified subscriber identity. For example originating endpoint may create a session addressed to DN 1 202 533 1234 which is terminated at node .
+
+At step signaling node may determine whether an application server has registered to receive notification of i.e. registered interest in termination events for the unified subscriber identity. If no application server has registered to receive notification of termination events for the subscriber associated with the session control may proceed to step where the session may be processed normally. However if the session is associated with a unified subscriber identifier for which an application server has registered to receive notification of termination events control may proceed to step .
+
+At step using the 3PCC protocol the signaling node e.g. PBX or class 5 end office may generate a termination event notification which may be communicated to application server . At step the notification of the termination event associated with the subscriber identified by the unified subscriber identifier served by signaling node may be received by application server . In this example because application server has registered with node requesting notification of termination events associated with DN 1 202 533 1234 signaling node may send termination event notification to application server indicating that a session addressed to DN 1 202 533 1234 has been received.
+
+At step upon receiving the termination event notification application server may execute screening and routing logic in order to determine how the session should ultimately terminate and whether it should be forked to multiple destinations. Depending on the capabilities of the 3PCC protocol application server may proceed to offer the session to the fixed endpoint or may suspend the session for a short period of time in order to give application server the opportunity to execute services. Unless application server responds otherwise the session may be offered to the fixed endpoint and alerting is provided to the fixed endpoint. In one embodiment application server may create a new call session to the subscriber s mobile endpoint by leveraging the DN of the mobile endpoint. This session may be routed by application server to the wireless network which serves the subscriber s mobile endpoint. Mobile device may be paged and alerted. At this point both subscriber s fixed endpoint and mobile endpoint are alerting. Application server may also leverage media server to generate comfort noise tone or announcement that may eventually be connected to mobile endpoint when it answers. This will alert the subscriber that a call is being delivered to their device during the short interval when the final connection is being negotiated.
+
+At step if the fixed device answers the session an answer notification may be delivered using a 3PCC protocol interface to application server . Upon receiving the answer notification application server may release the session to the subscriber s mobile device. Signaling messages may be sent to all of the terminating endpoints other than the terminating endpoint used to answer the call for instructing the terminating endpoints to release resources associated with the offered call. For example fixed endpoint may deliver answer notification message to application server and in response application server may send a session Release message to mobile endpoint . It may be appreciated that the application server may continue to maintain state information for the active session so that it can be made visible to services running on application server such as presence based services .
+
+At step if mobile device answers the session application server may detect the answer signal and may begin to establish a media connection between fixed endpoint and mobile device . It may be appreciated that while this connection is being formed the subscriber may be connected to comfort tones or announcements generated by media server .
+
+Establishment of a media connection may involve application server using the 3PCC interface to instruct signaling node to deflect the session away from fixed endpoint and instead route it to a temporary location DN TLDN provided by application server . This TLDN may be managed as a pooled resource by application server and may be temporarily associated with the specific session. For example application server may detect answer signal from mobile endpoint and in response send a deflect session message that includes TLDN 1 808 577 9876 to fixed endpoint . Node may respond by deflecting the session. The alerting session to fixed endpoint may be released and the call may be redirected to the TLDN provided by application server . The TLDN may be routed through the interconnect network to application server . The interconnect network can take any one of a variety of forms including for example public switched telephone network PSTN or a private network. When the redirected call arrives at application server the TLDN may be used to correlate it to the session that was previously created for mobile device . Application server may then negotiate an end to end media path between fixed endpoints and . The state of the active session may be maintained by application server and may be represented to other services running on the server e.g. presence based services .
+
+At step fixed endpoint makes a call to destination subscriber as identified by his or her unified subscriber identifier.
+
+At step fixed endpoint may send a call setup message to signaling node that includes the unified subscriber identifier for subscriber .
+
+At step in response to receiving the Setup message signaling node may send a termination event message to application server which was requested by application server in step .
+
+At step fixed endpoint may perform DN2 alerting. For example the endpoint begins to ring in order to notify the user of the incoming call or session.
+
+At step application server may send a first SIP INVITE message to PSTN destined for a mobile DN associated with the unified subscriber identity.
+
+At step the first INVITE message may be forwarded from PSTN to MSC and ultimately for delivery to the mobile subscriber. At step application server may initiate a session to one or more additional PSTN destinations such as the user s home phone or some other device the user would also like the call to be offered to.
+
+At step application server may send a second SIP INVITE message to PSTN that is addressed to another PSTN node such as PSTN node .
+
+In the scenario shown in the called user chooses to answer the call using his or her fixed endpoint. Therefore at step fixed endpoint may send an Answer message to signaling node and at step signaling node may return an Answer event message to application server .
+
+At step application server may begin the process of clearing all other call legs which are not needed because subscriber has answered using fixed endpoint . For example at step application server may send a first CANCEL message to PSTN for canceling the call to mobile device . At step the CANCEL message is forwarded by PSTN to MSC and at step MSC may formulate and deliver a Release message to mobile device . Additionally application server may send a second CANCEL message destined for PSTN node for canceling the comfort noise tone or announcement services that are no longer needed. For example at step application server may send the second CANCEL message to PSTN which at step may forward the second CANCEL message to PSTN node .
+
+Because subscriber has answered the call using fixed endpoint at step a media path may be established between calling fixed endpoint and called fixed endpoint . When the call is completed subscriber may hang up and begin the process of tearing down the call. For example at step fixed endpoint may send a Release message to signaling node and at step signaling node may send a Release event message to application server . In response at step application server may store an indication Presence Idle. Finally at step signaling node may send a Release message to fixed endpoint and the call may be ended.
+
+At step fixed endpoint makes a call to destination subscriber as identified by his or her unified subscriber identifier.
+
+At step fixed endpoint may send a call setup message to signaling node that includes the unified subscriber identifier for subscriber .
+
+At step in response to receiving the Setup message signaling node may send a termination event message to application server which was requested by application server in step .
+
+At step fixed endpoint may perform DN2 alerting. For example the endpoint begins to ring in order to notify the user of the incoming call or session.
+
+At step application server may send a first SIP INVITE message to PSTN destined for a mobile DN associated with the unified subscriber identity.
+
+At step the first INVITE message may be forwarded from PSTN to MSC and ultimately for delivery to the mobile subscriber.
+
+At step application server may send a second SIP INVITE message to initiate a session to one or more additional PSTN destinations such as the user s home phone or some other device the user would also like the call to be offered to. At step the INVITE message is forwarded by PSTN to PSTN node for providing these services.
+
+As mentioned above in contrast to the scenario shown in subscriber may answer the call at his or her mobile device. Therefore at step mobile device may send an Answer message to MSC .
+
+At step MSC may send a 200 OK message to PSTN and PSTN may at step forward the 200 OK message to application server .
+
+At step application server may cancel other call legs or landline associated call signaling because they are no longer needed. For example application server may send a CANCEL message to PSTN and at step PSTN may forward the CANCEL message to PSTN node .
+
+At step application server may deflect the call to mobile device by sending a Deflect Call message including an International mobile routing number IMRN to PBX .
+
+At step signaling node may send a Release message to fixed endpoint and at step PBX may redirect the call to the IMRN provided earlier. In a SIP embodiment signaling node may send a SIP INVITE message including the IMRN to PSTN . However any suitable PBX protocol such as primary rate interface PRI Q signaling QSIG and H.323 may also be used without departing from the scope of the subject matter described herein.
+
+At step PSTN may forward the INVITE message to application server and at step application server may negotiate an end to end media path between fixed endpoint and subscriber at mobile device . Finally at step the media path has been established between the two endpoints and the call session may be conducted call session teardown signaling messages omitted for simplicity .
+
+At step a session may be originated from a fixed device associated with a unified subscriber identifier hosted by a network signaling node. The subscriber can originate a new session using any fixed or mobile device which shares the identity.
+
+At step it is determined whether an application server has registered interest in origination events for the subscriber associated with the unified subscriber identity.
+
+If the session is not originated by a fixed device associated with a subscriber identifier for which an application server has registered interest in origination events control may proceed to step where the session may be processed normally. This may include routing the session to a destination mobile device.
+
+However if the session is not originated by a fixed device associated with a subscriber identifier for which an application server has registered interest in origination events control may proceed to step . At step an origination event notification may be communicated to the application server using the 3PCC protocol. For example sessions originating from the fixed device may be processed by the node which hosts the fixed device using existing call setup routines. As a part of the origination an origination event notification may be communicated using the 3PCC protocol to the application server. The application server may maintain this state information and represent it to other services running on the server such as presence based services .
+
+At step in response to receiving the origination event notification the signaling node may redirect the session from the mobile device to the application server. Sessions originating from the mobile device may be redirected to the application server so that they can be processed using the single identity of the subscriber. It may be appreciated that by redirecting sessions to the application server the terminating party is not aware of the specific device which the subscriber uses to create the call. Several methods exist for redirecting a call to an application server. These include leveraging a software application client running on the mobile device to redirect the call using an intelligent network IN based service node to redirect the origination to the application server or using translations and routing services defined natively within the wireless carrier s network to route the call.
+
+Once the subscriber has an active session on one device the subscriber may move or grab the call to a different device by leveraging a call grabber service. Call grabber service may be provided by SIP application server s and work between clients registered on the server. The call grabber service can be leveraged when the fixed endpoint is hosted by other telephony nodes such as a PBX a softswitch or an end office telephony node.
+
+At step it may be determined whether the subscriber desires to move the call or session to a different device than the one currently used for conducting the call. If it is determined that the subscriber does not wish to move the call to another device then control may proceed to step where the call may proceed normally using the existing device.
+
+However if the subscriber wishes to move the call to another device which may be associated with the current device via the unified subscriber identity control may proceed to step . At step a call grabber service that is provided by one or more application servers may be initiated. In one potential embodiment the call grabber service may be initiated by entering a service code on the device to which the call is to be moved grabbed . If the call grabber service code is entered on the fixed device a notification may be sent via the 3PCC interface to the application server to inform it of the service request. The application server may then allocate a TLDN and direct the fixed device s node via a 3PCC response to deflect the session to the specified TLDN. The fixed device s node may respond by redirecting the call to the TLDN which ultimately routes to the application server.
+
+Alternatively if the call grabber service code is entered on the mobile device call redirection may be handled using the method outlined above for originating sessions from a single identity. Through this method the call is ultimately routed to the application server.
+
+At step when application server receives the incoming call grabber session it may correlates the incoming call grabber session to the active session that is to be grabbed. When invoked from a fixed device the TLDN may be correlated to the state information stored with the initial 3PCC notification. This identifies the subscriber which the application server can use to locate the active session. Alternatively when invoked from a mobile device the calling line identification CLI may identify the mobile DN which can be correlated to the endpoint s active session. Application server may use the mobile DN to locate the active session. Application server may allocate a TLDN and leverage the 3PCC interface to instruct the node associated with the fixed device identified by the DN to perform a single step transfer to the TLDN. The fixed device s node may respond by performing the transfer and result in the application server having direct control of the initial call.
+
+At step the application server may then negotiate an end to end media path between the remote party and the device that is grabbing the call.
+
+At step the subscriber s other device which was previously connected to the session may be released. It may also be appreciated that a call may be grabbed multiple times between fixed and mobile devices by repeating the method described above.
+
+At step fixed endpoint makes a call to destination subscriber as identified by his or her unified subscriber identifier.
+
+At step fixed endpoint may send a call setup message to signaling node that includes the unified subscriber identifier for subscriber .
+
+At step in response to receiving the Setup message signaling node may send a termination event message to application server which was requested by application server in step .
+
+At step fixed endpoint may perform DN2 alerting. For example the endpoint may begin to ring in order to notify the user of the incoming call session.
+
+At step application server may send an IP multimedia routing number IMRN to mobile device in response to the call grab request. The IMRN is a routable number that points to IMS and has the same structure as an international ISDN number. When a call is originated by a user equipment UE device in a circuit switched network e.g. PSTN appropriate call information associated with the call may be provided to a CCCF network node disposed in the IMS network. At the CCCF node a pool of E.164 numbers may be maintained as IMRNs which are mapped to or otherwise associated with called party numbers. In addition to the IMS based embodiment shown it is appreciated that the subject matter described herein may also be applied to pre IMS networks and that the IMS routing scenario illustrated in is not intended to be limiting.
+
+At step MSC may forward the Setup message including the IMRN to PSTN and at step PSTN may formulate and send a SIP INVITE message including the IMRN to application server .
+
+At step application server may send a Single Step Transfer message for transferring subscriber to the IMRN to PBX . It is appreciated that while an IMRN or similar mechanism may be used both for routing call between MSC and application server as well as between application server and PBX this does not necessarily mean that the IMRN has to be the same in both cases. Steps and may be independent of one another.
+
+At steps and application server may negotiate an end to end media path between fixed endpoint and subscriber at mobile device .
+
+At step signaling node may send an INVITE message including the call grab service code to PSTN and at step PSTN may forward the INVITE message to application server .
+
+The call leg release process referenced in step may begin at step when application server sends a Release message to PSTN .
+
+At step PSTN may forward the Release message to MSC and at step MSC may forward the Release message to mobile device .
+
+The media path negotiation process referenced in step may result in at step a media path being established between fixed endpoint and fixed endpoint because subscriber grabbed the call using their fixed endpoint in this scenario .
+
+It will be understood that various details of the subject matter described herein may be changed without departing from the scope of the subject matter described herein. Furthermore the foregoing description is for the purpose of illustration only and not for the purpose of limitation as the subject matter described herein is defined by the claims as set forth hereinafter.
+

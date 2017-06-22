@@ -1,0 +1,103 @@
+---
+
+title: Wireless sensor time synchronization
+abstract: A method including running a local low frequency clock in a node in a network during a battery conserving sleep mode, waking from the sleep mode at a time boundary determined by the low frequency clock, updating a representation of a master time based on a calculation and the time boundary, advancing the representation of master time based on a local high frequency clock while the node is awake, receiving a time synchronization signal from a node in the network, updating the calculation based on a difference between the representation of master time and a time provided in the time synchronization signal, setting a new time boundary, and returning to the sleep mode.
+url: http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=09386552&OS=09386552&RS=09386552
+owner: Honeywell International Inc.
+number: 09386552
+owner_city: Morris Plains
+owner_country: US
+publication_date: 20130930
+---
+Accurate time synchronization is one of the critical requirements of a wireless network. For wireless fire sensor networks time synchronization affects important factors governing network performance like fire regulatory latency requirements interference and power consumption. The nodes in the network have to be tightly synchronized so that they transmit and receive data at designated times without interference with each other.
+
+Actuators such as light strobes within a fire network may also have to be synchronized so that in case of a fire alarm they can be periodically activated at precise times. Also since wireless sensor nodes are battery powered they should be energy efficient remaining in power save mode most of the time and waking up only to exchange information. Designing a time synchronization mechanism that ensures reliable communication within regulatory limits and also optimizes power consumption is a big challenge.
+
+A method including running a local low frequency clock in a node in a network during a battery conserving sleep mode waking from the sleep mode at a time boundary determined by the low frequency clock updating a representation of a master time based on a calculation and the time boundary advancing the representation of master time based on a local high frequency clock while the node is awake receiving a time synchronization signal from a node in the network updating the calculation based on a difference between the representation of master time and a time provided in the time synchronization signal setting a new time boundary and returning to the sleep mode.
+
+In a further embodiment the method may be embodied in computer executable code stored on a computer readable storage device.
+
+A system includes a local high frequency clock a local low frequency clock a receiver to receive a time synchronization signal from a node in the network and a controller coupled to the local high frequency clock the low frequency clock and the receiver to wake the system responsive to a time boundary determined by the low frequency clock update a representation of master time based on a calculation and the time boundary advance the representation of master time based on the local high frequency clock while the system is awake receive a time synchronization signal from a node in the network and update the calculation based on a difference between the representation of master time and a time provided in the time synchronization signal.
+
+In the following description reference is made to the accompanying drawings that form a part hereof and in which is shown by way of illustration specific embodiments which may be practiced. These embodiments are described in sufficient detail to enable those skilled in the art to practice the invention and it is to be understood that other embodiments may be utilized and that structural logical and electrical changes may be made without departing from the scope of the present invention. The following description of example embodiments is therefore not to be taken in a limited sense and the scope of the present invention is defined by the appended claims.
+
+The functions or algorithms described herein may be implemented in software or a combination of software and human implemented procedures in one embodiment. The software may consist of computer executable instructions stored on computer readable media such as memory or other type of storage devices. Further such functions correspond to modules which are software hardware firmware or any combination thereof. Multiple functions may be performed in one or more modules as desired and the embodiments described are merely examples. The software may be executed on a digital signal processor ASIC microprocessor or other type of processor operating on a computer system such as a personal computer server or other computer system.
+
+Various embodiments relate generally to monitoring and alarm systems. Some embodiments relate to wireless fire detection systems and voice annunciation VA and public annunciation PA systems. A time synchronization mechanism provides both high time sync accuracy and power optimization in fire sensor networks. The mechanism achieves accuracy by exchange of time stamps based on a first high frequency clock and history based drift compensation between parent and child nodes in the network. To achieve low power consumption a second low frequency and in one embodiment less accurate clock stays awake in the child nodes during sleep intervals to maintain the time. The less accurate clock may consume less power than a high frequency clock in one embodiment and thus helps to conserve battery life in a sleep type of mode.
+
+When the nodes wake up the high frequency clock is first appropriately updated to represent the master time based on the value of the low accuracy clock. In addition the representation of master time in the high frequency clock is synchronized to the master time through exchange of time synchronization messages. Therefore there are two synchronization methods involved. One method updates the representation of master time in the high frequency clock with respect to the low accuracy clock at every wakeup from power save mode sleep . In the second synchronization method the representation of master time in the high frequency clock is synchronized to its parent s representation of master time based on the time stamp received. To propagate the time each node may then sends its own time synchronization timestamp to its child. The child node receives time synchronization messages from its parent at regular intervals. These time synchronization messages contain the parent time stamp and are used to synchronize the child representation of master time to the parent representation of master time. The child also maintains a history of parent time stamps which it uses to correct drift especially in case of a time synchronization packet loss. MAC level time stamping may be used to further ensure accuracy for the timestamps.
+
+In some embodiments the controller is coupled to a sensor such as a fire detection sensor. A battery may be used to power the wireless node . Controller is also coupled to a transceiver to transmit and receive signals to and from other nodes. In one embodiment transceiver operates as a receiver to wirelessly receive a time synchronization signal periodically transmitted from gateway or from other nodes if the gateway is not in range. In one example the gateway may transmit a beacon frame containing a 64 bit timestamp referred to as an IEEE 802.11 TSF time synchronization function to synchronize child nodes in a network using a time division multiple access TDMA protocol with allocated time slots. The time synchronization signal may take other forms that may be inconsistent with the IEEE 802.11 TSF format.
+
+Controller is coupled to the high frequency clock the low frequency clock and the transceiver to wake the node responsive to a wakeup count based on the low frequency clock and to start the highly frequency clock and synchronize the highly frequency clock as a function of the received time synchronization signal . In one embodiment the controller is programmed to perform history based drift compensation as a function of the low frequency clock and received time synchronization signals . In a further embodiment the controller synchronizes the highly frequency clock as a function of receive path delay. The time synchronization signal in one embodiment may have an accuracy of 10 s or less. Waking from the sleep mode may be based on a count derived from the low frequency clock .
+
+Gateway node in one embodiment may be a line powered parent node in a wireless mesh network. The gateway may include a master clock a controller and transceiver . The master clock continues to run during sleep modes of child nodes such as node and other nodes indicated at in the network. The master clock is the primary source of time that all other nodes and may attempt to emulate in their local representation of master time. The other nodes may be child nodes of node which acts to propagate a time synchronization signal to its child nodes after node has been synchronized or the other nodes may be child nodes of parent node access point and receive the same time synchronization signal as node . In further networks the child nodes may themselves act as parent nodes sending time synchronization signals to their child nodes once they are updated with a representation of master time. Basically each node has its own sense of local time a representation of master time which is updated via propagating time synchronization signals originating from a master clock residing in the gateway .
+
+In one embodiment the history based drift compensation comprises a rate multiplier that is derived from an integral derivative control function performed on past differences between the local representation of master time and the received time synchronization signals.
+
+The wireless network may be a multi hop wireless network where each child node receives a time synchronization signal from its parent node propagated from the time synchronization signal of the master gateway clock. The nodes may then pass a time synchronization signal to further child nodes based on its updated local representation of master time.
+
+In one embodiment the nodes calculate a clock quality value at as illustrated in a flowchart in indicating a confidence level in the quality of their clocks. This may be a measure of absolute time quality having a range of 0 to 255 in one embodiment represented by an additional 8 bits and may be based on latency delays from the master clock signal and may also be based on the number of hops through intermediate nodes prior to receiving a time synchronization signal. The clock quality value may be included with the time synchronization signal that is passed on to child nodes at . The time synchronization signal sent by the gateway node may carry the highest quality value as it is the master clock for the entire system.
+
+In a further embodiment multiple time synchronization signals are received from different nodes at . The receiving node may then select one of the received time synchronization signals to use to update the representation of master time as a function the clock quality values of the received time synchronization signals.
+
+In one embodiment waking from the sleep mode at is performed at a time determined from the low accuracy clock in the child node. Waking from the sleep mode is based on a count derived from the low accuracy clock. Waking from the sleep mode further comprises updating the representation of master time time based on the low accuracy clock.
+
+The received time synchronization signal may be based on a master clock that stays operative during the sleep mode of the child node. The high frequency clock in the child node is not running during the sleep mode of the child node to conserve batter power. In one embodiment a TDMA protocol is implemented to receive the time synchronization signals in accordance with child allocated time slots. The child node may update the time as a function of receive path delay. The time synchronization signal may have an accuracy of 10 s or less.
+
+At the nodes wake their transceivers also referred to as radio wakeup. Following radio wakeup idle times for transmit at and receive at occur. In one embodiment at the beginning of idle time for receive the TSF starts ticking at 0. At the end of the idle times the parent node transmits the timestamp as indicated at as a time sync super frame and it is received by the child at . The parent is then idle at while the child performs timestamp processing at . Following a further idle time the parent requests an acknowledgement of receipt of the timestamp at and the child acknowledges at .
+
+In one embodiment the time TSF ticks time2ticks T time2ticks Idle to Rx time wherein time2ticks is an application programming interface to convert ms to ticks and Idle to Rx time is a constant. The parent node may then propagate the correct time to its child nodes which may in turn do the same to ensure all nodes in a mesh have the same time. In one embodiment the child nodes have low level access to a Wi Fi stack to replace beacon functionality with the time sync frames and also have read and write access to TSF timers and power save mode control via a controller.
+
+As the end of a sleep cycle a wakeup event occurs as indicated at a time . The wakeup event may be generated based on the sleep counter reaching a specified value or from an external event in various embodiments. At the node is powered on and the high frequency clock begins operating. The wake from sleep delay starts counting based on the high frequency clock as indicated at and after a delay the representation of master time is reloaded at based on the sleep counter estimation of sleep time. A correction factor is added at . The TSF counter then continues to increment.
+
+At an application level a sync mechanism which may be run in the controller ensures that audio and visual actuators of sensor are synchronized to within 20 ms during a fire alarm. This may be done in a few different ways using the representation of master time as a time base for the system clock. In one embodiment a mechanism is used to propagate the representation of master time TSF time to the application level periodically.
+
+Computer readable instructions stored on a computer readable medium are executable by the processing unit of the computer . A hard drive CD ROM and RAM are some examples of articles including a non transitory computer readable medium. For example a computer program capable of providing a generic technique to perform access control check for data access and or for doing an operation on one of the servers in a component object model COM based system may be included on a CD ROM and loaded from the CD ROM to a hard drive. The computer readable instructions allow computer to provide generic access controls in a COM based computer network system having multiple users and servers.
+
+advancing the representation of master time based on a local high frequency clock while the node is awake 
+
+updating the calculation based on a difference between the representation of master time and a time provided in the time synchronization signal 
+
+2. The method of example 1 and further comprising performing history based drift compensation using a rate multiplier based on previous differences between the time synchronization signals and the representation of master time.
+
+3. The method of any of examples 1 2 wherein waking from the sleep mode is performed at a time determined from the low frequency clock and wherein waking from the sleep mode further comprises updating a time of the representation of master time based on the low frequency clock.
+
+4. The method of any of examples 1 3 wherein the received time synchronization signal is based on a master clock that stays operative during the sleep mode of the node.
+
+5. The method of example 4 wherein the node sends a time synchronization signal to another node and wherein a time provided in the time synchronization signal is based on the representation of master time.
+
+selecting a received time synchronization signal to use to update the representation of master time as a function the clock quality values of the received time synchronization signals.
+
+8. The method of any of examples 1 7 wherein the wireless network comprises a battery powered wireless fire system.
+
+9. The method of any of examples 1 8 and further comprising using a TDMA protocol to receive the time synchronization signal in accordance with allocated time slots and wherein the node updates the representation of master time as a function of receive path delay.
+
+10. A computer readable storage device having instructions for causing electronics to perform a method the method comprising 
+
+advancing the representation of master time based on a local high frequency clock while the node is awake 
+
+updating the calculation based on a difference between the representation of master time and a time provided in the time synchronization signal 
+
+11. The computer readable storage device of example 10 wherein the method further comprises performing history based drift compensation using a rate multiplier based on previous differences between the time synchronization signals and the representation of master time.
+
+12. The computer readable storage device of any of examples 10 11 wherein waking from the sleep mode is performed at a time determined from the low frequency clock and wherein waking from the sleep mode further comprises updating a time of the representation of master time based on the low frequency clock.
+
+13. The computer readable storage device of any of examples 10 12 wherein the received time synchronization signal is based on a master clock that stays operative during the sleep mode of the node.
+
+14. The computer readable storage device of any of examples 10 13 wherein the node sends a time synchronization signal to another node and wherein a time provided in the time synchronization signal is based on the representation of master time.
+
+receiving multiple time synchronization signals from different nodes and selecting a received time synchronization signal to use to update the representation of master time as a function the clock quality values of the received time synchronization signals.
+
+a controller coupled to the local high frequency clock the low frequency clock and the receiver to wake the system responsive to a time boundary determined by the low frequency clock update a representation of master time based on a calculation and the time boundary advance the representation of master time based on the local high frequency clock while the system is awake receive a time synchronization signal from a node in the network and update the calculation based on a difference between the representation of master time and a time provided in the time synchronization signal.
+
+17. The system of example 16 wherein the controller is programmed to perform history based drift compensation using a rate multiplier based on previous differences between the time synchronization signals and the representation of master time.
+
+18. The system of any of examples 16 17 wherein waking from the sleep mode is performed at a time determined from the low frequency clock and wherein waking from the sleep mode further comprises updating a time of the representation of master time based on the low frequency clock.
+
+19. The system of any of examples 16 18 wherein the system sends a time synchronization signal to another node and wherein a time provided in the time synchronization signal is based on the representation of master time.
+
+receive multiple time synchronization signals from different nodes and select a received time synchronization signal to use to update the representation of master time as a function the clock quality values of the received time synchronization signals.
+
+Although a few embodiments have been described in detail above other modifications are possible. For example the logic flows depicted in the figures do not require the particular order shown or sequential order to achieve desirable results. Other steps may be provided or steps may be eliminated from the described flows and other components may be added to or removed from the described systems. Other embodiments may be within the scope of the following claims.
+
