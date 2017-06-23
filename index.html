@@ -50,6 +50,7 @@ title: API Evangelist - Patents 2013
       {% assign uspto_url = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=' | append: post.number | append: '&OS=' | append: post.number | append: '&RS=' | append: post.number %}
       {% if post.title contains 'api' or post.title contains 'application programming interface' or post.title contains 'hypermedia' or post.abstract contains 'api' or post.abstract contains 'application programming interface' or post.abstract contains 'hypermedia' or post.content contains 'api' or post.content contains 'application programming interface' or post.content contains 'hypermedia' %}
         {% unless post.title == blank or post.title == '' %}
+				{% unless post.number == blank or post.number == '' %}
           <h3><a href="{{ uspto_url }}">{{ post.title }}</a></h3>
           <p>{{ post.abstract }}</p>
           <ul style="padding-top: 10px;">
@@ -60,6 +61,7 @@ title: API Evangelist - Patents 2013
             <li><strong>Details:</strong> <a href="{{ uspto_url }}" target="_blank">Visit USPTO</a></li>
           </ul>
         	<center><hr style="width: 75%;" /></center>
+					{% endunless %}
         {% endunless %}
       {% endif %}
   {% endfor %}
