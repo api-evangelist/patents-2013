@@ -41,13 +41,10 @@ title: API Evangelist - Patents 2013
 </section>
 
 {% assign patents_content = site.data.patent_content.index[0] %}
-
 <section>
-
   <header class="main">
     <h2>{{ patents_content.title }}</h2>
   </header>
-
   <p>{{ patents_content.header }}</p>
   {% for post in site.posts limit: 1000 %}
       {% assign uspto_url = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PALL&S1=' | append: post.number | append: '&OS=' | append: post.number | append: '&RS=' | append: post.number %}
